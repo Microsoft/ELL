@@ -1162,15 +1162,13 @@ namespace nodes
         model::MemoryShape weightsShape;
         switch (_order)
         {
-        case FilterOrder::tilesFirst:
-        {
+        case FilterOrder::tilesFirst: {
             // 'tilesFirst': (windowRows * windowColumns) x (numFilters) x (numChannels)
             auto numFilterChannels = static_cast<int>(_filterWeights.NumChannels());
             weightsShape = model::MemoryShape({ windowSize, windowSize, numFilters, numFilterChannels });
         }
         break;
-        case FilterOrder::filtersFirst:
-        {
+        case FilterOrder::filtersFirst: {
             // 'filtersFirst': (numFilters) x (numChannels) x (windowRows * windowColumns)
             auto numFilterChannels = static_cast<int>(_filterWeights.NumColumns());
             weightsShape = model::MemoryShape({ numFilters, numFilterChannels, windowSize, windowSize });

@@ -31,7 +31,8 @@ namespace utilities
     /// </summary>
 
     /// <summary> Recursive base case with zero functions. Does nothing. </summary>
-    inline void InOrderFunctionEvaluator() {}
+    inline void InOrderFunctionEvaluator()
+    {}
 
     /// <summary> Invokes a series of zero-argument functions. </summary>
     ///
@@ -93,7 +94,8 @@ namespace utilities
     /// <summary> FunctionTraits: A type-traits-like way to get the return type and argument types of a function </summary>
     ///
     template <typename T>
-    struct FunctionTraits : public FunctionTraits<decltype(&T::operator())> { }; // generic base template
+    struct FunctionTraits : public FunctionTraits<decltype(&T::operator())>
+    {}; // generic base template
 
     // Function pointers
     template <typename ReturnT, typename... Args>

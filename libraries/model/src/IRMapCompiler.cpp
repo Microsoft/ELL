@@ -766,7 +766,7 @@ namespace model
     void IRMapCompiler::NewNodeRegion(const Node& node)
     {
         auto& currentFunction = GetModule().GetCurrentFunction();
-        
+
         auto currentBlock = currentFunction.GetCurrentBlock();
         auto termInst = currentBlock->getTerminator();
 
@@ -774,7 +774,7 @@ namespace model
         {
             Log() << "Prev block had no terminator!" << EOL;
         }
-        
+
         // Create a new block
         auto pBlock = currentFunction.BeginBlock(IdString(node), true);
         assert(pBlock != nullptr && "Got null new block");

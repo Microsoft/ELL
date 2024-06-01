@@ -315,13 +315,11 @@ model::Map GetRetargetedModel(std::vector<PredictorType>& binaryPredictors, mode
     // Create a new map with the output of the combined linear predictors appended.
     switch (map.GetOutputType())
     {
-    case model::Port::PortType::smallReal:
-    {
+    case model::Port::PortType::smallReal: {
         result = GetMultiClassMapFromBinaryPredictors<float>(binaryPredictors, map);
         break;
     }
-    case model::Port::PortType::real:
-    {
+    case model::Port::PortType::real: {
         result = GetMultiClassMapFromBinaryPredictors<double>(binaryPredictors, map);
         break;
     }
@@ -339,13 +337,11 @@ model::Map GetRetargetedModel(const PredictorType& trainedPredictor, model::Map&
     // Create a new map with the output of the linear predictor appended.
     switch (map.GetOutputType())
     {
-    case model::Port::PortType::smallReal:
-    {
+    case model::Port::PortType::smallReal: {
         result = AppendTrainedLinearPredictorToMap<float>(trainedPredictor, map, mappedDatasetDimension);
         break;
     }
-    case model::Port::PortType::real:
-    {
+    case model::Port::PortType::real: {
         result = AppendTrainedLinearPredictorToMap<double>(trainedPredictor, map, mappedDatasetDimension);
         break;
     }

@@ -205,7 +205,7 @@ namespace utilities
 
     /// <summary> A class representing layout of a block of data in memory where the block can also
     /// contain padding such that a certain offset is required to access the "active" memory inside the
-    /// padded block.  Coordinates that can only see the "active" region are called "logical" coordinates, and 
+    /// padded block.  Coordinates that can only see the "active" region are called "logical" coordinates, and
     /// coordinates that include the padding are called "physical" coordinates. </summary>
     class MemoryLayout : public utilities::IArchivable
     {
@@ -555,7 +555,7 @@ namespace utilities
         /// <returns> The name of this type. </returns>
         std::string GetRuntimeTypeName() const override { return GetTypeName(); }
 
-        /// <summary> If the layout is contiguous, return a new layout that interprets this block as 
+        /// <summary> If the layout is contiguous, return a new layout that interprets this block as
         /// a simple one dimensional vector, otherwise throws an exception. </summary>
         MemoryLayout Flatten() const;
 

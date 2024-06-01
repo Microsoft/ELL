@@ -9,8 +9,8 @@
 
 #include "LLVMUtilities.h"
 
-#include <utilities/include/TypeAliases.h>
 #include <utilities/include/Exception.h>
+#include <utilities/include/TypeAliases.h>
 
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/IR/Module.h>

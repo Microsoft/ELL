@@ -303,20 +303,17 @@ namespace predictors
 
                 switch (_convolutionalParameters.method)
                 {
-                case ConvolutionMethod::simple:
-                {
+                case ConvolutionMethod::simple: {
                     auto result = dsp::Convolve2DSimpleDepthwiseSeparable(inputChannelTensor, weights, numFilters, stride);
                     outputChannelTensor.CopyFrom(result);
                 }
                 break;
-                case ConvolutionMethod::unrolled:
-                {
+                case ConvolutionMethod::unrolled: {
                     auto result = dsp::Convolve2DUnrolled(inputChannelTensor, weights, numFilters, stride);
                     outputChannelTensor.CopyFrom(result);
                 }
                 break;
-                case ConvolutionMethod::winograd:
-                {
+                case ConvolutionMethod::winograd: {
                     auto result = dsp::Convolve2DWinogradDepthwiseSeparable(inputChannelTensor, weights, numFilters); // Stide of 1 is assumed
                     outputChannelTensor.CopyFrom(result);
                 }

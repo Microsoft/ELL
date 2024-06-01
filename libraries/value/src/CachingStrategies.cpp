@@ -592,11 +592,7 @@ namespace value
         underlyingNest.RenameVariable(_value, cacheRef, _atIndices, { cacheFillKernel, viewInitKernel });
     }
 
-   // namespace value
-
-  
-
-
+    // namespace value
 
     // Helper class to hold a binary tree with a MemoryLayout at each leaf node corresponding to a different
     // boundary condition and with a number of levels equal to the number of dimensions in a cache layout

@@ -603,26 +603,22 @@ static void TestConvolutionNodeCompileVsReference(ImageShape inputShape, Filters
     case dsp::ConvolutionMethodOption::automatic:
         std::cout << "Testing 'automatic' method --- using 'simple' instead" << std::endl;
     // fallthrough
-    case dsp::ConvolutionMethodOption::simple:
-    {
+    case dsp::ConvolutionMethodOption::simple: {
         auto convNode = model.AddNode<nodes::SimpleConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, filterWeights, stride);
         convOutput = convNode->output;
         break;
     }
-    case dsp::ConvolutionMethodOption::diagonal:
-    {
+    case dsp::ConvolutionMethodOption::diagonal: {
         auto convNode = model.AddNode<nodes::DiagonalConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, filterWeights, stride);
         convOutput = convNode->output;
         break;
     }
-    case dsp::ConvolutionMethodOption::unrolled:
-    {
+    case dsp::ConvolutionMethodOption::unrolled: {
         auto convNode = model.AddNode<nodes::UnrolledConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, filterWeights, stride);
         convOutput = convNode->output;
         break;
     }
-    case dsp::ConvolutionMethodOption::winograd:
-    {
+    case dsp::ConvolutionMethodOption::winograd: {
         auto convNode = model.AddNode<nodes::WinogradConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, filterWeights, stride, options.winogradOptions.tileSize, options.winogradOptions.filterOrder);
         convOutput = convNode->output;
         break;

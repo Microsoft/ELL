@@ -66,7 +66,10 @@ namespace value
             name);
     }
 
-    Matrix GEMM(Matrix m1, Matrix m2) { throw LogicException(LogicExceptionErrors::notImplemented); }
+    Matrix GEMM(Matrix m1, Matrix m2)
+    {
+        throw LogicException(LogicExceptionErrors::notImplemented);
+    }
 
     Vector GEMV(Matrix m, Vector v)
     {

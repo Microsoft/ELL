@@ -810,8 +810,7 @@ void TestCompilableBinaryOperationNode()
              BinaryOperationType::divide,
              BinaryOperationType::modulo,
              BinaryOperationType::maximum,
-             BinaryOperationType::minimum 
-        })
+             BinaryOperationType::minimum })
     {
         model::Model model;
         auto inputNode = model.AddNode<model::InputNode<double>>(3);

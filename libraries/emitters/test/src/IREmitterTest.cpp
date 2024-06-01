@@ -1178,9 +1178,9 @@ void TestInlineAssembly()
     auto functionName = "square";
 
     std::string asmStr;
-    if(targetDevice.IsWindows())
+    if (targetDevice.IsWindows())
     {
-     asmStr= R"XX(
+        asmStr = R"XX(
     .globl FUNCTION
 FUNCTION:
     movl    %ecx, %eax
@@ -1190,7 +1190,7 @@ FUNCTION:
     }
     else
     {
-     asmStr= R"XX(
+        asmStr = R"XX(
     .globl     FUNCTION
 FUNCTION:
     imull      %edi, %edi
@@ -1213,7 +1213,7 @@ FUNCTION:
         auto x = fn.LocalScalar(&(*arguments++));
         auto squareFn = module.GetFunction(functionName);
         squareFn->addFnAttr(llvm::Attribute::AttrKind::AlwaysInline);
-        auto result = fn.Call(squareFn, {x});
+        auto result = fn.Call(squareFn, { x });
 
         fn.Return(result);
     }

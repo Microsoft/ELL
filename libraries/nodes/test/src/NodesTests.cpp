@@ -749,36 +749,33 @@ static void TestClockNodeCompute()
         lagNotificationCallbackCount++;
     });
 
-    std::vector<std::vector<nodes::TimeTickType>> signal =
-        {
-            { start },
-            { start + interval * 1 + lagThreshold / 2 }, // within threshold
-            { start + interval * 2 }, // on time
-            { start + interval * 3 + lagThreshold }, // late (expect notification)
-            { start + interval * 4 + lagThreshold * 20 }, // really late (expect notification)
-            { start + interval * 5 } // on time
-        };
+    std::vector<std::vector<nodes::TimeTickType>> signal = {
+        { start },
+        { start + interval * 1 + lagThreshold / 2 }, // within threshold
+        { start + interval * 2 }, // on time
+        { start + interval * 3 + lagThreshold }, // late (expect notification)
+        { start + interval * 4 + lagThreshold * 20 }, // really late (expect notification)
+        { start + interval * 5 } // on time
+    };
 
-    std::vector<std::vector<nodes::TimeTickType>> expectedResults =
-        {
-            // lastIntervalTime, currentTime
-            { start, start },
-            { start + interval * 1, start + interval * 1 + lagThreshold / 2 },
-            { start + interval * 2, start + interval * 2 },
-            { start + interval * 3, start + interval * 3 + lagThreshold },
-            { start + interval * 4, start + interval * 4 + lagThreshold * 20 },
-            { start + interval * 5, start + interval * 5 }
-        };
+    std::vector<std::vector<nodes::TimeTickType>> expectedResults = {
+        // lastIntervalTime, currentTime
+        { start, start },
+        { start + interval * 1, start + interval * 1 + lagThreshold / 2 },
+        { start + interval * 2, start + interval * 2 },
+        { start + interval * 3, start + interval * 3 + lagThreshold },
+        { start + interval * 4, start + interval * 4 + lagThreshold * 20 },
+        { start + interval * 5, start + interval * 5 }
+    };
 
-    std::vector<nodes::TimeTickType> expectedGetTicksResults =
-        {
-            interval,
-            interval - lagThreshold / 2,
-            interval,
-            interval - lagThreshold,
-            interval - lagThreshold * 20,
-            interval
-        };
+    std::vector<nodes::TimeTickType> expectedGetTicksResults = {
+        interval,
+        interval - lagThreshold / 2,
+        interval,
+        interval - lagThreshold,
+        interval - lagThreshold * 20,
+        interval
+    };
 
     std::vector<std::vector<nodes::TimeTickType>> results;
     std::vector<nodes::TimeTickType> getTicksResults;

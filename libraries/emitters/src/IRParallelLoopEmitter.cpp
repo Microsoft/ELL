@@ -19,7 +19,8 @@ namespace ell
 namespace emitters
 {
     IRParallelForLoopEmitter::IRParallelForLoopEmitter(IRFunctionEmitter& functionEmitter) :
-        _functionEmitter(functionEmitter) {}
+        _functionEmitter(functionEmitter)
+    {}
 
     void IRParallelForLoopEmitter::EmitLoop(int begin, int end, int increment, const ParallelLoopOptions& options, const std::vector<LLVMValue>& capturedValues, BodyFunction body)
     {

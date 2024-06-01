@@ -6,8 +6,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "BasicMathNodesTests.h"
 #include "AppendNodesTests.h"
+#include "BasicMathNodesTests.h"
 #include "NodesTests.h"
 
 #include <testing/include/testing.h>

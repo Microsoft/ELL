@@ -14,7 +14,7 @@ namespace ell
 {
 namespace passes
 {
-    /// <summary> A transformation that detects when a ConvolutionalLayerNode node can be replaced with a 
+    /// <summary> A transformation that detects when a ConvolutionalLayerNode node can be replaced with a
     /// reduced bit version such as BinaryConvolutionalLayerNode. </summary>
     class DetectLowPrecisionConvolutionTransformation : public model::Transformation
     {

@@ -12,4 +12,4 @@ namespace ell
 {
 void TestPropertyBag();
 void TestRecursivePropertyBag();
-}
+} // namespace ell

@@ -23,7 +23,6 @@ namespace trainers
     class KMeansTrainer
     {
     public:
-
         /// <summary> Constructs an instance of KMeansTrainer trainer </summary>
         ///
         /// <param name="dimension"> The input dimension. </param>

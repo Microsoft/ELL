@@ -31,7 +31,8 @@ namespace emitters
         LLVMValue pOffset) :
         _function(function),
         _pPointer(value),
-        _pOffset(pOffset) {}
+        _pOffset(pOffset)
+    {}
 
     IRLocalArray::IRLocalArrayValue& IRLocalArray::IRLocalArrayValue::operator=(const IRLocalArrayValue& value)
     {

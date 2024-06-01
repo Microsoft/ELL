@@ -36,7 +36,7 @@ void DspTest(const std::string& path)
     //
     // Testing
     //
-    
+
     // 1D Convolution
     TestConv1D<float>(ConvolutionMethodOption::simple);
     TestConv1D<float>(ConvolutionMethodOption::winograd);

@@ -27,7 +27,7 @@ namespace nodes
         std::vector<int> resultSize(arguments[0].NumDimensions(), 1);
         for (const auto& layout : arguments)
         {
-            // inflatedLayout will hold the layout for this argument, expanded to the same number of 
+            // inflatedLayout will hold the layout for this argument, expanded to the same number of
             // dimensions as the current result (if necessary).
             auto inflatedLayout = layout;
             int extraDimensions = layout.NumDimensions() - inflatedLayout.NumDimensions();

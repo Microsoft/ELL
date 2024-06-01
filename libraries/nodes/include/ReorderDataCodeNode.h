@@ -139,10 +139,10 @@ namespace nodes
 
         ValueType _paddingValue;
 
-		// This is used in the Define function as a workaround for passing in constant Scalar values
-		// to the kernel
-		int _kernel_size;
-};
+        // This is used in the Define function as a workaround for passing in constant Scalar values
+        // to the kernel
+        int _kernel_size;
+    };
 
     /// <summary> Convenience function for adding a node to a model. </summary>
     ///
@@ -259,7 +259,7 @@ namespace nodes
         _inputMemoryLayout(inputMemoryLayout),
         _outputMemoryLayout(_output.GetMemoryLayout()),
         _paddingValue(paddingValue),
-		_kernel_size(1)
+        _kernel_size(1)
     {
         if (inputMemoryLayout.NumDimensions() != outputMemoryLayout.NumDimensions())
         {
@@ -280,7 +280,7 @@ namespace nodes
         _inputMemoryLayout(_input.GetMemoryLayout()),
         _outputMemoryLayout(_output.GetMemoryLayout()),
         _paddingValue(0),
-		_kernel_size(1)
+        _kernel_size(1)
     {
         if (_inputMemoryLayout.NumDimensions() != order.NumDimensions())
         {
@@ -300,7 +300,7 @@ namespace nodes
         _inputMemoryLayout(_input.GetMemoryLayout()),
         _outputMemoryLayout(_output.GetMemoryLayout()),
         _paddingValue(paddingValue),
-		_kernel_size(1)
+        _kernel_size(1)
     {
         if (_inputMemoryLayout.NumDimensions() != outputMemoryLayout.NumDimensions())
         {
@@ -321,7 +321,7 @@ namespace nodes
         _inputMemoryLayout(inputMemoryLayout),
         _outputMemoryLayout(_output.GetMemoryLayout()),
         _paddingValue(paddingValue),
-		_kernel_size(1)
+        _kernel_size(1)
     {
         if (inputMemoryLayout.NumDimensions() != outputMemoryLayout.NumDimensions())
         {

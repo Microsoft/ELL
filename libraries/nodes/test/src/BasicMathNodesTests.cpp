@@ -89,7 +89,7 @@ void TestUnaryOperationNodeCompute(UnaryOperationType op, double (*expectedTrans
     ComputeContext context("TestUnaryOperationNodeCompute<double>");
     ContextGuard<> guard(context);
 
-    std::vector<std::vector<double>> data = { { 0 ,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10 } };
+    std::vector<std::vector<double>> data = { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } };
 
     model::Model model;
     auto inputNode = model.AddNode<model::InputNode<double>>(data[0].size());

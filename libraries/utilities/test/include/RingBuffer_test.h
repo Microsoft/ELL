@@ -10,5 +10,5 @@
 
 namespace ell
 {
-    void TestRingBuffer();
+void TestRingBuffer();
 }

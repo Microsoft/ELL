@@ -41,7 +41,8 @@ using namespace ell::utilities;
 
 namespace
 {
-[[maybe_unused]] void PrintModel(const model::Model& model) {
+[[maybe_unused]] void PrintModel(const model::Model& model)
+{
     std::cout << "------ Model start ------" << std::endl;
     model.Print(std::cout);
     std::cout << "------ Model end ------" << std::endl;

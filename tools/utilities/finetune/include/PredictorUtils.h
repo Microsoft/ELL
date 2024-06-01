@@ -31,4 +31,4 @@ WeightsAndBias<ElementType> GetWeightsAndBias(const ScalarPredictor& predictor);
 
 template <typename ElementType>
 WeightsAndBias<ElementType> GetWeightsAndBias(const VectorPredictor& predictor);
-}
+} // namespace ell

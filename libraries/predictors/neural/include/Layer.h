@@ -55,10 +55,9 @@ namespace predictors
 
 /// <summary> Vector of strings that contains the names of the neural network layer types. </summary>
 #define ADD_LAYER_TYPE(a, b) b,
-        static const std::string LayerNames[] =
-            {
-                LAYER_TYPES_LIST
-            };
+        static const std::string LayerNames[] = {
+            LAYER_TYPES_LIST
+        };
 #undef ADD_LAYER_TYPE
 
         /// <summary> Enum that represents the type of padding values in a neural network layer. </summary>
@@ -417,8 +416,7 @@ namespace predictors
             case PaddingScheme::randomZeroAndOnes:
                 output.Generate([] { return static_cast<ElementType>(std::rand() % 2); });
                 break;
-            case PaddingScheme::alternatingZeroAndOnes:
-            {
+            case PaddingScheme::alternatingZeroAndOnes: {
                 for (size_t row = 0; row < output.NumRows(); row++)
                 {
                     for (size_t column = 0; column < output.NumColumns(); column++)

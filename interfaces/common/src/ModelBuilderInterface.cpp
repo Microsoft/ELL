@@ -30,16 +30,16 @@
 #include <nodes/include/DCTNode.h>
 #include <nodes/include/DTWDistanceNode.h>
 #include <nodes/include/DotProductNode.h>
-#include <nodes/include/FastGRNNNode.h>
 #include <nodes/include/FFTNode.h>
+#include <nodes/include/FastGRNNNode.h>
 #include <nodes/include/FilterBankNode.h>
 #include <nodes/include/GRUNode.h>
 #include <nodes/include/HammingWindowNode.h>
 #include <nodes/include/HannWindowNode.h>
 #include <nodes/include/IIRFilterNode.h>
 #include <nodes/include/LSTMNode.h>
-#include <nodes/include/MatrixMatrixMultiplyNode.h>
 #include <nodes/include/MatrixMatrixMultiplyCodeNode.h>
+#include <nodes/include/MatrixMatrixMultiplyNode.h>
 #include <nodes/include/MatrixVectorMultiplyNode.h>
 #include <nodes/include/NeuralNetworkPredictorNode.h>
 #include <nodes/include/NodeOperations.h>
@@ -778,8 +778,7 @@ Node ModelBuilder::AddIIRFilterNode(Model model, PortElements input, std::vector
     case PortType::real:
         newNode = model.GetModel()->AddNode<ell::nodes::IIRFilterNode<double>>(ell::model::PortElements<double>(elements), bCoeffs, aCoeffs);
         break;
-    case PortType::smallReal:
-    {
+    case PortType::smallReal: {
         std::vector<float> bFloatCoeffs(bCoeffs.begin(), bCoeffs.end());
         std::vector<float> aFloatCoeffs(aCoeffs.begin(), aCoeffs.end());
         newNode = model.GetModel()->AddNode<ell::nodes::IIRFilterNode<float>>(ell::model::PortElements<float>(elements), bFloatCoeffs, aFloatCoeffs);
@@ -1229,14 +1228,12 @@ Node ModelBuilder::AddActivationLayerNode(Model model, PortElements input, const
     case ActivationType::hardSigmoid:
     case ActivationType::hardTanh:
     case ActivationType::sigmoid:
-    case ActivationType::tanh:
-    {
+    case ActivationType::tanh: {
         auto activationLayer = ell::predictors::neural::ActivationLayer<ElementType>(parameters, ell::api::predictors::neural::ActivationLayer::CreateActivation<ElementType>(layer.activation));
         newNode = model.GetModel()->AddNode<ell::nodes::ActivationLayerNode<ElementType>>(ell::model::PortElements<ElementType>(elements), activationLayer);
         break;
     }
-    case ActivationType::leaky:
-    {
+    case ActivationType::leaky: {
         // can't use the ell::api::predictors::CreateActivation helper method in this case because the neural::LeakyReLUActivation requires the alpha value parameter.
         using ApiLeakyReLUActivationLayer = ell::api::predictors::neural::LeakyReLUActivationLayer;
         auto* activationlayer = const_cast<ell::api::predictors::neural::ActivationLayer*>(&layer);
@@ -1251,11 +1248,10 @@ Node ModelBuilder::AddActivationLayerNode(Model model, PortElements input, const
             implementation = new ell::predictors::neural::LeakyReLUActivation<ElementType>();
         }
         newNode = model.GetModel()->AddNode<ell::nodes::ActivationLayerNode<ElementType>>(ell::model::PortElements<ElementType>(elements),
-                                                                                         ell::predictors::neural::ActivationLayer<ElementType>(parameters, implementation));
+                                                                                          ell::predictors::neural::ActivationLayer<ElementType>(parameters, implementation));
         break;
     }
-    case ActivationType::prelu:
-    {
+    case ActivationType::prelu: {
         // can't use the ell::api::predictors::CreateActivation helper method in this case because the neural::PReLUActivationLayer requires the alpha value parameter.
         using ApiPReLUActivationLayer = ell::api::predictors::neural::PReLUActivationLayer;
         auto* activationlayer = const_cast<ell::api::predictors::neural::ActivationLayer*>(&layer);

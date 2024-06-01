@@ -75,7 +75,10 @@ namespace value
         return Scalar(indexedValue).Copy();
     }
 
-    Value Tensor::GetValue() const { return _value; }
+    Value Tensor::GetValue() const
+    {
+        return _value;
+    }
 
     Tensor Tensor::SubTensor(Scalar row, Scalar column, Scalar channel, int numRows, int numColumns, int numChannels) const
     {
@@ -111,7 +114,10 @@ namespace value
         return newValue;
     }
 
-    size_t Tensor::Size() const { return _value.GetLayout().NumElements(); }
+    size_t Tensor::Size() const
+    {
+        return _value.GetLayout().NumElements();
+    }
 
     Matrix Tensor::Slice(Scalar row, value::Slice mode1, value::Slice mode2) const
     {
@@ -179,17 +185,35 @@ namespace value
         return indexedValue;
     }
 
-    size_t Tensor::Rows() const { return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(0)); }
+    size_t Tensor::Rows() const
+    {
+        return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(0));
+    }
 
-    size_t Tensor::Columns() const { return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(1)); }
+    size_t Tensor::Columns() const
+    {
+        return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(1));
+    }
 
-    size_t Tensor::Channels() const { return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(2)); }
+    size_t Tensor::Channels() const
+    {
+        return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(2));
+    }
 
-    ValueType Tensor::Type() const { return _value.GetBaseType(); }
+    ValueType Tensor::Type() const
+    {
+        return _value.GetBaseType();
+    }
 
-    void Tensor::SetName(const std::string& name) { _value.SetName(name); }
+    void Tensor::SetName(const std::string& name)
+    {
+        _value.SetName(name);
+    }
 
-    std::string Tensor::GetName() const { return _value.GetName(); }
+    std::string Tensor::GetName() const
+    {
+        return _value.GetName();
+    }
 
     Tensor& Tensor::operator+=(Scalar s)
     {

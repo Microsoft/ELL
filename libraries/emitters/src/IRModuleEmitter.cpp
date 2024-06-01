@@ -757,19 +757,16 @@ namespace emitters
         case ModuleOutputFormat::assembly:
         case ModuleOutputFormat::bitcode:
         case ModuleOutputFormat::ir:
-        case ModuleOutputFormat::objectCode:
-        {
+        case ModuleOutputFormat::objectCode: {
             WriteToFile(filePath, format, options);
             break;
         }
-        case ModuleOutputFormat::cHeader:
-        {
+        case ModuleOutputFormat::cHeader: {
             auto os = utilities::OpenOfstream(filePath);
             WriteToStream(os, format, options);
             break;
         }
-        case ModuleOutputFormat::swigInterface:
-        {
+        case ModuleOutputFormat::swigInterface: {
             // Write the swig interface file
             auto headerFilePath = filePath + ".h";
             auto os = utilities::OpenOfstream(filePath);

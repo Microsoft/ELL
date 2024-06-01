@@ -95,7 +95,8 @@ namespace emitters
     IRLocalMultidimArray::IRLocalArrayElement::IRLocalArrayElement(emitters::IRFunctionEmitter& function, LLVMValue data, LLVMValue offset) :
         _function(function),
         _data(data),
-        _offset(offset) {}
+        _offset(offset)
+    {}
 
     IRLocalMultidimArray::IRLocalArrayElement& IRLocalMultidimArray::IRLocalArrayElement::operator=(const IRLocalArrayElement& value)
     {

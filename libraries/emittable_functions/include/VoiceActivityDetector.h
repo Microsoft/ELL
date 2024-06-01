@@ -50,9 +50,7 @@ namespace emittable_functions
         /// <param name="thresholdUp"> Then we compare the energy of the current frame to the noise floor. If it is thresholdUp times higher, we switch to state VOICE. </param>
         /// <param name="thresholdDown"> Then we compare the energy of the current frame to the noise floor. If it is thresholdDown times lower, we switch to state NO VOICE.  </param>
         /// <param name="levelThreshold"> Special case is when the energy of the frame is lower than levelThreshold, when we force the state to NO VOICE. </param>
-        VoiceActivityDetector(double sampleRate, double windowSize, double frameDuration, double tauUp, double tauDown,
-                              double largeInput, double gainAtt, double thresholdUp, double thresholdDown,
-                              double levelThreshold);
+        VoiceActivityDetector(double sampleRate, double windowSize, double frameDuration, double tauUp, double tauDown, double largeInput, double gainAtt, double thresholdUp, double thresholdDown, double levelThreshold);
 
         /// <summary> destructor </summary>
         ~VoiceActivityDetector();

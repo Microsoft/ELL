@@ -56,16 +56,14 @@ namespace value
                 default:
                     break;
                 }
-            case llvm::Type::TypeID::PointerTyID:
-            {
+            case llvm::Type::TypeID::PointerTyID: {
                 auto elementType = type->getPointerElementType();
 
                 auto underlyingType = LLVMTypeToValueType(elementType);
                 underlyingType.second += 1;
                 return underlyingType;
             }
-            case llvm::Type::TypeID::ArrayTyID:
-            {
+            case llvm::Type::TypeID::ArrayTyID: {
                 auto elementType = type->getArrayElementType();
 
                 auto underlyingType = LLVMTypeToValueType(elementType);
@@ -979,7 +977,10 @@ namespace value
         return _emitter.HasFunction(decl.GetFunctionName());
     }
 
-    Value LLVMContext::StoreConstantDataImpl(ConstantData data) { return _computeContext.StoreConstantData(data); }
+    Value LLVMContext::StoreConstantDataImpl(ConstantData data)
+    {
+        return _computeContext.StoreConstantData(data);
+    }
 
     void LLVMContext::ForImpl(MemoryLayout layout, std::function<void(std::vector<Scalar>)> fn, const std::string& name)
     {
@@ -1152,8 +1153,7 @@ namespace value
                 case CopyType::DirectScalarPassThrough:
                     destination.SetData(Emittable{ srcValue });
                     break;
-                case CopyType::DirectScalarCopy:
-                {
+                case CopyType::DirectScalarCopy: {
                     auto destAtOffset = irEmitter.PointerOffset(destValue, irEmitter.Zero(VariableType::Int32));
                     irEmitter.Store(destAtOffset, srcValue);
                     break;
@@ -1180,8 +1180,7 @@ namespace value
                             "");
                     }
                     break;
-                case CopyType::Reference:
-                {
+                case CopyType::Reference: {
                     auto srcAtOffset = irEmitter.Load(srcValue);
                     irEmitter.Store(destValue, srcAtOffset);
                     destination.SetLayout(source.GetLayout());

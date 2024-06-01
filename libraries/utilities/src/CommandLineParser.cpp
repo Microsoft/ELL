@@ -512,8 +512,7 @@ namespace utilities
         {
             switch (entry.EntryType)
             {
-            case DocumentationEntry::Type::option:
-            {
+            case DocumentationEntry::Type::option: {
                 const OptionInfo& info = _options[entry.EntryString];
                 if (info.enabled)
                 {

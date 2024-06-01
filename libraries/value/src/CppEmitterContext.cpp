@@ -213,10 +213,16 @@ namespace value
     {                                  \
     }
 #define ADD_TYPE_TO_CTYPE_STRING_STRING(TYPE, STR) \
-    else if constexpr (std::is_same_v<TYPE, T>) { return #STR; }
+    else if constexpr (std::is_same_v<TYPE, T>)    \
+    {                                              \
+        return #STR;                               \
+    }
 #define ADD_TYPE_TO_CTYPE_STRING(TYPE) ADD_TYPE_TO_CTYPE_STRING_STRING(TYPE, TYPE)
-#define END_TYPE_TO_CTYPE_STRING_MAP \
-    else { static_assert(utilities::FalseType<T>{}, "Unknown type"); }
+#define END_TYPE_TO_CTYPE_STRING_MAP                              \
+    else                                                          \
+    {                                                             \
+        static_assert(utilities::FalseType<T>{}, "Unknown type"); \
+    }
 
             BEGIN_TYPE_TO_CTYPE_STRING_MAP
             ADD_TYPE_TO_CTYPE_STRING(bool)
@@ -1520,9 +1526,15 @@ namespace value
         return value.IsConstant() ? _computeContext.GetName(value) : value.Get<Emittable>().GetDataAs<CppEmitterContext::ValueImpl*>()->name;
     }
 
-    void CppEmitterContext::ImportCodeFileImpl(std::string) { throw LogicException(LogicExceptionErrors::notImplemented); }
+    void CppEmitterContext::ImportCodeFileImpl(std::string)
+    {
+        throw LogicException(LogicExceptionErrors::notImplemented);
+    }
 
-    Scalar CppEmitterContext::GetFunctionAddressImpl(const FunctionDeclaration& fn) { throw LogicException(LogicExceptionErrors::notImplemented); }
+    Scalar CppEmitterContext::GetFunctionAddressImpl(const FunctionDeclaration& fn)
+    {
+        throw LogicException(LogicExceptionErrors::notImplemented);
+    }
 
     std::string CppEmitterContext::GetScopeAdjustedName(GlobalAllocationScope scope, std::string name) const
     {
@@ -1562,7 +1574,10 @@ namespace value
         return _globalStream;
     }
 
-    std::ostream& CppEmitterContext::FnDecl() { return _fnDeclStream; }
+    std::ostream& CppEmitterContext::FnDecl()
+    {
+        return _fnDeclStream;
+    }
 
     Value CppEmitterContext::PromoteConstantData(Value value)
     {

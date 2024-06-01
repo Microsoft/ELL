@@ -21,10 +21,10 @@
 #include <utilities/include/StringUtil.h>
 #include <utilities/include/UniqueNameList.h>
 
+#include <cctype>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <cctype>
 
 namespace ell
 {
@@ -489,7 +489,7 @@ namespace emitters
         for (auto arg = predictFunction->arg_begin(), end = predictFunction->arg_end(); arg != end; ++arg)
         {
             ArgumentFlags flags = ArgumentFlags::InOut;
-            if (index < argDecls.size()) 
+            if (index < argDecls.size())
             {
                 flags = argDecls[index++].GetFlags();
             }

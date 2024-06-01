@@ -255,7 +255,5 @@ namespace emitters
         }
     }
 
-
-
 } // namespace emitters
 } // namespace ell

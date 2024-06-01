@@ -445,15 +445,15 @@ namespace nodes
     value::Scalar BroadcastOperationNode<ValueType, FunctionType>::CallKernelFunction(FunctionType f, std::vector<value::Array> inputs, std::vector<std::vector<value::Scalar>> indices) const
     {
         // TODO: if FunctionType was a function that took a vector of inputs, then we could dispense with this `if constexpr` block
-        if constexpr(std::is_same_v<FunctionType, UnaryScalarFunction>)
+        if constexpr (std::is_same_v<FunctionType, UnaryScalarFunction>)
         {
             return f(inputs[0](indices[0]));
         }
-        else if constexpr(std::is_same_v<FunctionType, BinaryScalarFunction>)
+        else if constexpr (std::is_same_v<FunctionType, BinaryScalarFunction>)
         {
             return f(inputs[0](indices[0]), inputs[1](indices[1]));
         }
-        else if constexpr(std::is_same_v<FunctionType, TernaryScalarFunction>)
+        else if constexpr (std::is_same_v<FunctionType, TernaryScalarFunction>)
         {
             return f(inputs[0](indices[0]), inputs[1](indices[1]), inputs[2](indices[2]));
         }

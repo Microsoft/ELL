@@ -59,28 +59,23 @@ ScalarOptimizerResult TrainScalarPredictor(BinaryLabelDataContainer dataset, con
 
     switch (optimizerParameters.lossFunction)
     {
-    case LossFunction::hinge:
-    {
+    case LossFunction::hinge: {
         optimization::HingeLoss loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::huber:
-    {
+    case LossFunction::huber: {
         optimization::HuberLoss loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::logistic:
-    {
+    case LossFunction::logistic: {
         optimization::LogisticLoss loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::smoothedHinge:
-    {
+    case LossFunction::smoothedHinge: {
         optimization::SmoothedHingeLoss loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::square:
-    {
+    case LossFunction::square: {
         optimization::SquareLoss loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
@@ -170,28 +165,23 @@ VectorOptimizerResult TrainVectorPredictor(VectorLabelDataContainer dataset, con
 
     switch (optimizerParameters.lossFunction)
     {
-    case LossFunction::hinge:
-    {
+    case LossFunction::hinge: {
         optimization::MultivariateLoss<optimization::HingeLoss> loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::huber:
-    {
+    case LossFunction::huber: {
         optimization::MultivariateLoss<optimization::HuberLoss> loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::logistic:
-    {
+    case LossFunction::logistic: {
         optimization::MultivariateLoss<optimization::LogisticLoss> loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::smoothedHinge:
-    {
+    case LossFunction::smoothedHinge: {
         optimization::MultivariateLoss<optimization::SmoothedHingeLoss> loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
-    case LossFunction::square:
-    {
+    case LossFunction::square: {
         optimization::MultivariateLoss<optimization::SquareLoss> loss;
         return TrainPredictor<SolutionType>(examples, loss, optimizerParameters);
     }
@@ -215,28 +205,23 @@ VectorOptimizerResult ReoptimizeSparsePredictor(VectorOptimizerResult& sparseSol
 
     switch (optimizerParameters.lossFunction)
     {
-    case LossFunction::hinge:
-    {
+    case LossFunction::hinge: {
         optimization::MultivariateLoss<optimization::HingeLoss> loss;
         return ReoptimizeSparsePredictor<SolutionType>(sparseSolution, examples, loss, optimizerParameters);
     }
-    case LossFunction::huber:
-    {
+    case LossFunction::huber: {
         optimization::MultivariateLoss<optimization::HuberLoss> loss;
         return ReoptimizeSparsePredictor<SolutionType>(sparseSolution, examples, loss, optimizerParameters);
     }
-    case LossFunction::logistic:
-    {
+    case LossFunction::logistic: {
         optimization::MultivariateLoss<optimization::LogisticLoss> loss;
         return ReoptimizeSparsePredictor<SolutionType>(sparseSolution, examples, loss, optimizerParameters);
     }
-    case LossFunction::smoothedHinge:
-    {
+    case LossFunction::smoothedHinge: {
         optimization::MultivariateLoss<optimization::SmoothedHingeLoss> loss;
         return ReoptimizeSparsePredictor<SolutionType>(sparseSolution, examples, loss, optimizerParameters);
     }
-    case LossFunction::square:
-    {
+    case LossFunction::square: {
         optimization::MultivariateLoss<optimization::SquareLoss> loss;
         return ReoptimizeSparsePredictor<SolutionType>(sparseSolution, examples, loss, optimizerParameters);
     }

@@ -28,183 +28,183 @@ namespace ell
 // Utilities
 namespace
 {
-void ThrowIfEmpty(const UnlabeledDataContainer& dataset)
-{
-    if (dataset.Size() == 0)
+    void ThrowIfEmpty(const UnlabeledDataContainer& dataset)
     {
-        throw utilities::InputException(utilities::InputExceptionErrors::badData, "Empty dataset");
-    }
-}
-
-template <typename T1, typename T2>
-void ThrowIfNotSameSize(const std::vector<T1>& a, const std::vector<T2>& b)
-{
-    if (a.size() != b.size())
-    {
-        throw utilities::InputException(utilities::InputExceptionErrors::badData, "Sizes don't match");
-    }
-}
-
-template <typename T1, typename T2>
-void ThrowIfNotSameSize(const math::RowVector<T1>& a, const math::RowVector<T2>& b)
-{
-    if (a.Size() != b.Size())
-    {
-        throw utilities::InputException(utilities::InputExceptionErrors::badData, "Sizes don't match");
-    }
-}
-
-template <typename T>
-math::RowVector<T> operator-(const math::RowVector<T>& a, const math::RowVector<T>& b)
-{
-    ThrowIfNotSameSize(a, b);
-    auto v = a;
-    v -= b;
-    return v;
-}
-
-template <typename T>
-math::RowVector<T>& operator*=(math::RowVector<T>& a, const math::RowVector<T>& b)
-{
-    ThrowIfNotSameSize(a, b);
-    auto size = a.Size();
-    for (size_t i = 0; i < size; ++i)
-    {
-        a[i] *= b[i];
-    }
-    return a;
-}
-
-template <typename T>
-math::RowVector<T> operator*(const math::RowVector<T>& a, const math::RowVector<T>& b)
-{
-    ThrowIfNotSameSize(a, b);
-    auto v = a;
-    v *= b;
-    return v;
-}
-
-template <typename T>
-math::RowVector<T> operator/(const math::RowVector<T>& a, T denom)
-{
-    auto v = a;
-    v /= denom;
-    return v;
-}
-
-template <typename T>
-math::RowVector<T>& operator/=(math::RowVector<T>& a, const math::RowVector<T>& b)
-{
-    ThrowIfNotSameSize(a, b);
-    auto size = a.Size();
-    for (size_t i = 0; i < size; ++i)
-    {
-        a[i] /= b[i];
-    }
-    return a;
-}
-
-template <typename T>
-math::RowVector<T> Sqrt(const math::RowVector<T>& a)
-{
-    auto v = a;
-    auto xform = math::SquareRootTransformation<T>;
-    v.Transform(xform);
-    return v;
-}
-
-int GetNumRows(const UnlabeledDataContainer& dataset)
-{
-    return dataset.Size();
-}
-
-int GetNumColumns(const UnlabeledDataContainer& dataset)
-{
-    ThrowIfEmpty(dataset);
-    return dataset[0].Size();
-}
-
-struct BasicDataStatistics
-{
-    int numRows;
-    std::vector<int64_t> numZeros;
-    math::RowVector<double> sumElements;
-    math::RowVector<double> sumSquaredElements;
-};
-
-BasicDataStatistics GetBasicDataStatistics(const UnlabeledDataContainer& dataset, const utilities::MemoryLayout& layout)
-{
-    ThrowIfEmpty(dataset);
-
-    BasicDataStatistics result;
-    auto columns = GetNumColumns(dataset);
-    auto numZeros = std::vector<int64_t>(columns);
-    auto sum = math::RowVector<double>(columns);
-    auto sumSquares = math::RowVector<double>(columns);
-    for (const auto& row : dataset)
-    {
-        auto x = CastVector<double>(row);
-        for (int i = 0; i < columns; ++i)
+        if (dataset.Size() == 0)
         {
-            if (x[i] == 0.0)
-                ++numZeros[i];
+            throw utilities::InputException(utilities::InputExceptionErrors::badData, "Empty dataset");
         }
-        sum += x;
-        sumSquares += math::Square(x);
     }
 
-    return {
-        GetNumRows(dataset),
-        numZeros,
-        sum,
-        sumSquares,
+    template <typename T1, typename T2>
+    void ThrowIfNotSameSize(const std::vector<T1>& a, const std::vector<T2>& b)
+    {
+        if (a.size() != b.size())
+        {
+            throw utilities::InputException(utilities::InputExceptionErrors::badData, "Sizes don't match");
+        }
+    }
+
+    template <typename T1, typename T2>
+    void ThrowIfNotSameSize(const math::RowVector<T1>& a, const math::RowVector<T2>& b)
+    {
+        if (a.Size() != b.Size())
+        {
+            throw utilities::InputException(utilities::InputExceptionErrors::badData, "Sizes don't match");
+        }
+    }
+
+    template <typename T>
+    math::RowVector<T> operator-(const math::RowVector<T>& a, const math::RowVector<T>& b)
+    {
+        ThrowIfNotSameSize(a, b);
+        auto v = a;
+        v -= b;
+        return v;
+    }
+
+    template <typename T>
+    math::RowVector<T>& operator*=(math::RowVector<T>& a, const math::RowVector<T>& b)
+    {
+        ThrowIfNotSameSize(a, b);
+        auto size = a.Size();
+        for (size_t i = 0; i < size; ++i)
+        {
+            a[i] *= b[i];
+        }
+        return a;
+    }
+
+    template <typename T>
+    math::RowVector<T> operator*(const math::RowVector<T>& a, const math::RowVector<T>& b)
+    {
+        ThrowIfNotSameSize(a, b);
+        auto v = a;
+        v *= b;
+        return v;
+    }
+
+    template <typename T>
+    math::RowVector<T> operator/(const math::RowVector<T>& a, T denom)
+    {
+        auto v = a;
+        v /= denom;
+        return v;
+    }
+
+    template <typename T>
+    math::RowVector<T>& operator/=(math::RowVector<T>& a, const math::RowVector<T>& b)
+    {
+        ThrowIfNotSameSize(a, b);
+        auto size = a.Size();
+        for (size_t i = 0; i < size; ++i)
+        {
+            a[i] /= b[i];
+        }
+        return a;
+    }
+
+    template <typename T>
+    math::RowVector<T> Sqrt(const math::RowVector<T>& a)
+    {
+        auto v = a;
+        auto xform = math::SquareRootTransformation<T>;
+        v.Transform(xform);
+        return v;
+    }
+
+    int GetNumRows(const UnlabeledDataContainer& dataset)
+    {
+        return dataset.Size();
+    }
+
+    int GetNumColumns(const UnlabeledDataContainer& dataset)
+    {
+        ThrowIfEmpty(dataset);
+        return dataset[0].Size();
+    }
+
+    struct BasicDataStatistics
+    {
+        int numRows;
+        std::vector<int64_t> numZeros;
+        math::RowVector<double> sumElements;
+        math::RowVector<double> sumSquaredElements;
     };
-}
 
-BasicDataStatistics GetBasicDataStatistics(const UnlabeledDataContainer& dataset)
-{
-    auto columns = GetNumColumns(dataset);
-    utilities::MemoryLayout layout({ columns });
-    return GetBasicDataStatistics(dataset, layout);
-}
-
-template <typename WeightsType>
-Sparsity GetWeightsSparsity(const WeightsType& weights) // TODO: add layout
-{
-    auto weightsVec = weights.ToArray();
-    auto numZeros = std::count_if(weightsVec.begin(), weightsVec.end(), [](auto a) { return a == 0; });
-    return { static_cast<int64_t>(weightsVec.size()), numZeros };
-}
-
-template <typename NodeType>
-Sparsity GetNodeWeightsSparsity(const NodeType& node)
-{
-    return GetWeightsSparsity(node.GetLayer().GetWeights());
-}
-
-Sparsity GetNodeWeightsSparsity(const model::Node& node)
-{
-    if (IsConvolutionalLayerNode<float>(&node))
+    BasicDataStatistics GetBasicDataStatistics(const UnlabeledDataContainer& dataset, const utilities::MemoryLayout& layout)
     {
-        return GetNodeWeightsSparsity(static_cast<const nodes::ConvolutionalLayerNode<float>&>(node));
+        ThrowIfEmpty(dataset);
+
+        BasicDataStatistics result;
+        auto columns = GetNumColumns(dataset);
+        auto numZeros = std::vector<int64_t>(columns);
+        auto sum = math::RowVector<double>(columns);
+        auto sumSquares = math::RowVector<double>(columns);
+        for (const auto& row : dataset)
+        {
+            auto x = CastVector<double>(row);
+            for (int i = 0; i < columns; ++i)
+            {
+                if (x[i] == 0.0)
+                    ++numZeros[i];
+            }
+            sum += x;
+            sumSquares += math::Square(x);
+        }
+
+        return {
+            GetNumRows(dataset),
+            numZeros,
+            sum,
+            sumSquares,
+        };
     }
 
-    if (IsConvolutionalLayerNode<double>(&node))
+    BasicDataStatistics GetBasicDataStatistics(const UnlabeledDataContainer& dataset)
     {
-        return GetNodeWeightsSparsity(static_cast<const nodes::ConvolutionalLayerNode<double>&>(node));
+        auto columns = GetNumColumns(dataset);
+        utilities::MemoryLayout layout({ columns });
+        return GetBasicDataStatistics(dataset, layout);
     }
 
-    if (IsFullyConnectedLayerNode<float>(&node))
+    template <typename WeightsType>
+    Sparsity GetWeightsSparsity(const WeightsType& weights) // TODO: add layout
     {
-        return GetNodeWeightsSparsity(static_cast<const nodes::FullyConnectedLayerNode<float>&>(node));
+        auto weightsVec = weights.ToArray();
+        auto numZeros = std::count_if(weightsVec.begin(), weightsVec.end(), [](auto a) { return a == 0; });
+        return { static_cast<int64_t>(weightsVec.size()), numZeros };
     }
 
-    if (IsFullyConnectedLayerNode<double>(&node))
+    template <typename NodeType>
+    Sparsity GetNodeWeightsSparsity(const NodeType& node)
     {
-        return GetNodeWeightsSparsity(static_cast<const nodes::FullyConnectedLayerNode<double>&>(node));
+        return GetWeightsSparsity(node.GetLayer().GetWeights());
     }
-    return { 0, 0 };
-}
+
+    Sparsity GetNodeWeightsSparsity(const model::Node& node)
+    {
+        if (IsConvolutionalLayerNode<float>(&node))
+        {
+            return GetNodeWeightsSparsity(static_cast<const nodes::ConvolutionalLayerNode<float>&>(node));
+        }
+
+        if (IsConvolutionalLayerNode<double>(&node))
+        {
+            return GetNodeWeightsSparsity(static_cast<const nodes::ConvolutionalLayerNode<double>&>(node));
+        }
+
+        if (IsFullyConnectedLayerNode<float>(&node))
+        {
+            return GetNodeWeightsSparsity(static_cast<const nodes::FullyConnectedLayerNode<float>&>(node));
+        }
+
+        if (IsFullyConnectedLayerNode<double>(&node))
+        {
+            return GetNodeWeightsSparsity(static_cast<const nodes::FullyConnectedLayerNode<double>&>(node));
+        }
+        return { 0, 0 };
+    }
 } // namespace
 
 DataStatistics GetScalarDataStatistics(const UnlabeledDataContainer& dataset)
@@ -337,7 +337,7 @@ UnlabeledDataContainer GetNormalizedData(const UnlabeledDataContainer& dataset, 
         auto newRow = CastVector<double>(row).ToArray();
         MultidimArray newRowArray(newRow, layout);
         int size = layout.GetMemorySize();
-        for(int i = 0; i < size; ++i)
+        for (int i = 0; i < size; ++i)
         {
             auto coords = layout.GetPhysicalCoordinatesFromOffset(i);
             newRowArray[coords] -= stats.mean[coords[dimension]];
@@ -399,4 +399,4 @@ Sparsity GetSubmodelWeightsSparsity(const model::Submodel& submodel)
     });
     return sparsity;
 }
-}
+} // namespace ell

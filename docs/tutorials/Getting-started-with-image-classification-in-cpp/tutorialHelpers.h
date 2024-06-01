@@ -9,9 +9,9 @@
 #include <algorithm>
 #include <numeric>
 #include <opencv2/opencv.hpp>
+#include <stdlib.h>
 #include <string>
 #include <vector>
-#include <stdlib.h>
 
 #include "model.h"
 

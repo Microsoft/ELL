@@ -135,7 +135,7 @@ namespace utilities
 
     // deduction guide
     template <typename... T>
-    VariantVisitor(T...)->VariantVisitor<T...>;
+    VariantVisitor(T...) -> VariantVisitor<T...>;
 
     namespace detail
     {

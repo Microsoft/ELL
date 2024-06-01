@@ -33,7 +33,7 @@ namespace nodes
             min,
             max,
             sigmoid,
-			sign,
+            sign,
             sin,
             softmax,
             sqrt,

@@ -215,7 +215,7 @@ namespace value
         };
 
         template <typename ReturnT, typename Class, bool IsNoExcept, typename... Args>
-        struct StdFunctionDeductionGuideHelper<ReturnT (Class::*)(Args...) const& noexcept(IsNoExcept)>
+        struct StdFunctionDeductionGuideHelper<ReturnT (Class::*)(Args...) const & noexcept(IsNoExcept)>
         {
             using Type = ReturnT(Args...);
         };
@@ -232,12 +232,12 @@ namespace value
 
         // Function pointer
         template <typename ReturnT, typename... Args>
-        Function(ReturnT (*)(Args...))->Function<ReturnT(Args...)>;
+        Function(ReturnT (*)(Args...)) -> Function<ReturnT(Args...)>;
 
         // Functor
         template <typename Functor,
                   typename Signature = typename StdFunctionDeductionGuideHelper<decltype(&Functor::operator())>::Type>
-        Function(Functor)->Function<Signature>;
+        Function(Functor) -> Function<Signature>;
 #endif // defined(__APPLE__)
 
     } // namespace detail

@@ -53,7 +53,10 @@ namespace value
         return *this;
     }
 
-    Scalar Vector::operator[](Scalar index) { return (*this)(index); }
+    Scalar Vector::operator[](Scalar index)
+    {
+        return (*this)(index);
+    }
 
     Scalar Vector::operator()(Scalar index)
     {
@@ -63,7 +66,10 @@ namespace value
         return indexedValue;
     }
 
-    Scalar Vector::operator[](Scalar index) const { return (*this)(index); }
+    Scalar Vector::operator[](Scalar index) const
+    {
+        return (*this)(index);
+    }
 
     Scalar Vector::operator()(Scalar index) const
     {
@@ -74,7 +80,10 @@ namespace value
         return Scalar(indexedValue).Copy();
     }
 
-    Value Vector::GetValue() const { return _value; }
+    Value Vector::GetValue() const
+    {
+        return _value;
+    }
 
     Vector Vector::SubVector(Scalar offset, int size) const
     {
@@ -95,13 +104,25 @@ namespace value
         return newValue;
     }
 
-    size_t Vector::Size() const { return _value.GetLayout().NumElements(); }
+    size_t Vector::Size() const
+    {
+        return _value.GetLayout().NumElements();
+    }
 
-    ValueType Vector::GetType() const { return _value.GetBaseType(); }
+    ValueType Vector::GetType() const
+    {
+        return _value.GetBaseType();
+    }
 
-    void Vector::SetName(const std::string& name) { _value.SetName(name); }
+    void Vector::SetName(const std::string& name)
+    {
+        _value.SetName(name);
+    }
 
-    std::string Vector::GetName() const { return _value.GetName(); }
+    std::string Vector::GetName() const
+    {
+        return _value.GetName();
+    }
 
     Vector& Vector::operator+=(Scalar s)
     {

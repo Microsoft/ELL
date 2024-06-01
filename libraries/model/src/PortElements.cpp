@@ -281,25 +281,29 @@ namespace model
         _referencedPort(&port),
         _startIndex(0),
         _sliceSize(port.Size()),
-        _isFixedSize(false) {}
+        _isFixedSize(false)
+    {}
 
     PortRange::PortRange(const OutputPortBase& port, size_t index) :
         _referencedPort(&port),
         _startIndex(index),
         _sliceSize(1),
-        _isFixedSize(true) {}
+        _isFixedSize(true)
+    {}
 
     PortRange::PortRange(const OutputPortBase& port, size_t startIndex, size_t numValues) :
         _referencedPort(&port),
         _startIndex(startIndex),
         _sliceSize(numValues),
-        _isFixedSize(true) {}
+        _isFixedSize(true)
+    {}
 
     PortRange::PortRange(const PortElementBase& element) :
         _referencedPort(element.ReferencedPort()),
         _startIndex(element.GetIndex()),
         _sliceSize(1),
-        _isFixedSize(true) {}
+        _isFixedSize(true)
+    {}
 
     size_t PortRange::Size() const
     {
@@ -380,7 +384,8 @@ namespace model
     //
     PortElementBase::PortElementBase(const OutputPortBase& port, size_t index) :
         _referencedPort(&port),
-        _index(index) {}
+        _index(index)
+    {}
 
     //
     // PortElementsBase

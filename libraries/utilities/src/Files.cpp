@@ -36,7 +36,7 @@ namespace utilities
             const auto& path = filepath;
 #endif
             // open file
-            if(!FileExists(filepath))
+            if (!FileExists(filepath))
             {
                 throw utilities::InputException(InputExceptionErrors::invalidArgument, "file " + filepath + " doesn't exist");
             }

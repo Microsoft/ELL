@@ -55,7 +55,10 @@ namespace value
         return *this;
     }
 
-    Value Scalar::GetValue() const { return _value; }
+    Value Scalar::GetValue() const
+    {
+        return _value;
+    }
 
     Scalar Scalar::Copy() const
     {
@@ -64,11 +67,20 @@ namespace value
         return s;
     }
 
-    ValueType Scalar::GetType() const { return _value.GetBaseType(); }
+    ValueType Scalar::GetType() const
+    {
+        return _value.GetBaseType();
+    }
 
-    void Scalar::SetName(const std::string& name) { _value.SetName(name); }
+    void Scalar::SetName(const std::string& name)
+    {
+        _value.SetName(name);
+    }
 
-    std::string Scalar::GetName() const { return _value.GetName(); }
+    std::string Scalar::GetName() const
+    {
+        return _value.GetName();
+    }
 
     Scalar& Scalar::operator+=(Scalar s)
     {

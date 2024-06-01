@@ -13,8 +13,8 @@
 #include "RefineTransformation.h"
 
 #include <utilities/include/Exception.h>
-#include <utilities/include/StringUtil.h>
 #include <utilities/include/Logger.h>
+#include <utilities/include/StringUtil.h>
 
 #include <algorithm>
 
@@ -507,32 +507,27 @@ namespace model
             auto layout = outputPort->GetMemoryLayout().GetExtent();
             switch (outputPort->GetType())
             {
-            case PortType::boolean:
-            {
+            case PortType::boolean: {
                 auto outputNode = AddNode<NullNode<bool>>(outputPort->Size());
                 MapNodeOutput(*static_cast<const OutputPort<bool>*>(outputPort), outputNode->output);
                 break;
             }
-            case PortType::integer:
-            {
+            case PortType::integer: {
                 auto outputNode = AddNode<NullNode<int>>(outputPort->Size());
                 MapNodeOutput(*static_cast<const OutputPort<int>*>(outputPort), outputNode->output);
                 break;
             }
-            case PortType::bigInt:
-            {
+            case PortType::bigInt: {
                 auto outputNode = AddNode<NullNode<std::int64_t>>(outputPort->Size());
                 MapNodeOutput(*static_cast<const OutputPort<std::int64_t>*>(outputPort), outputNode->output);
                 break;
             }
-            case PortType::smallReal:
-            {
+            case PortType::smallReal: {
                 auto outputNode = AddNode<NullNode<float>>(outputPort->Size());
                 MapNodeOutput(*static_cast<const OutputPort<float>*>(outputPort), outputNode->output);
                 break;
             }
-            case PortType::real:
-            {
+            case PortType::real: {
                 auto outputNode = AddNode<NullNode<double>>(outputPort->Size());
                 MapNodeOutput(*static_cast<const OutputPort<double>*>(outputPort), outputNode->output);
                 break;

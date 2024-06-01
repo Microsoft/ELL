@@ -21,8 +21,8 @@
 #include <utilities/include/FunctionUtils.h>
 
 #include <value/include/ComputeContext.h>
-#include <value/include/LLVMContext.h>
 #include <value/include/FunctionDeclaration.h>
+#include <value/include/LLVMContext.h>
 #include <value/include/Matrix.h>
 #include <value/include/Tensor.h>
 #include <value/include/Value.h>

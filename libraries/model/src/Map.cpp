@@ -207,30 +207,25 @@ namespace model
             void* ptr = inputs[i];
             switch (GetInputType(i))
             {
-            case ell::model::Port::PortType::smallReal:
-            {
+            case ell::model::Port::PortType::smallReal: {
                 float* floatData = reinterpret_cast<float*>(ptr);
                 SetInputValue<float>(i, std::vector<float>(floatData, floatData + size));
             }
             break;
-            case ell::model::Port::PortType::real:
-            {
+            case ell::model::Port::PortType::real: {
                 double* doubleData = reinterpret_cast<double*>(ptr);
                 SetInputValue<double>(i, std::vector<double>(doubleData, doubleData + size));
             }
             break;
-            case ell::model::Port::PortType::integer:
-            {
+            case ell::model::Port::PortType::integer: {
                 int* intData = reinterpret_cast<int*>(ptr);
                 SetInputValue<int>(i, std::vector<int>(intData, intData + size));
             }
-            case ell::model::Port::PortType::bigInt:
-            {
+            case ell::model::Port::PortType::bigInt: {
                 int64_t* int64Data = reinterpret_cast<int64_t*>(ptr);
                 SetInputValue<int64_t>(i, std::vector<int64_t>(int64Data, int64Data + size));
             }
-            case ell::model::Port::PortType::boolean:
-            {
+            case ell::model::Port::PortType::boolean: {
                 bool* boolData = reinterpret_cast<bool*>(ptr);
                 SetInputValue<bool>(i, std::vector<bool>(boolData, boolData + size));
             }
@@ -249,32 +244,27 @@ namespace model
             void* ptr = outputs[i];
             switch (GetOutputType(i))
             {
-            case ell::model::Port::PortType::smallReal:
-            {
+            case ell::model::Port::PortType::smallReal: {
                 const std::vector<float>& values = _outputs[i]->GetOutput<float>();
                 ::memcpy(ptr, values.data(), size * sizeof(float));
             }
             break;
-            case ell::model::Port::PortType::real:
-            {
+            case ell::model::Port::PortType::real: {
                 const std::vector<double>& values = _outputs[i]->GetOutput<double>();
                 ::memcpy(ptr, values.data(), size * sizeof(double));
             }
             break;
-            case ell::model::Port::PortType::integer:
-            {
+            case ell::model::Port::PortType::integer: {
                 const std::vector<int>& values = _outputs[i]->GetOutput<int>();
                 ::memcpy(ptr, values.data(), size * sizeof(int));
             }
             break;
-            case ell::model::Port::PortType::bigInt:
-            {
+            case ell::model::Port::PortType::bigInt: {
                 const std::vector<int64_t>& values = _outputs[i]->GetOutput<int64_t>();
                 ::memcpy(ptr, values.data(), size * sizeof(int64_t));
             }
             break;
-            case ell::model::Port::PortType::boolean:
-            {
+            case ell::model::Port::PortType::boolean: {
                 bool* boolData = reinterpret_cast<bool*>(ptr);
                 const std::vector<bool>& values = _outputs[i]->GetOutput<bool>();
                 // std::vector<bool> has no data() member.

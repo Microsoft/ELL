@@ -167,13 +167,11 @@ namespace common
             ptrdiff_t callbackAddress = 0;
             switch (map.GetInputType())
             {
-            case model::Port::PortType::smallReal:
-            {
+            case model::Port::PortType::smallReal: {
                 callbackAddress = reinterpret_cast<ptrdiff_t>(&InputCallback_Float);
                 break;
             }
-            case model::Port::PortType::real:
-            {
+            case model::Port::PortType::real: {
                 callbackAddress = reinterpret_cast<ptrdiff_t>(&InputCallback_Double);
                 break;
             }
@@ -216,8 +214,7 @@ namespace common
             auto type = map.GetInputType();
             switch (type)
             {
-            case model::Port::PortType::smallReal:
-            {
+            case model::Port::PortType::smallReal: {
                 return input.template Transform<ExampleType>([&compiledMap](const ExampleType& example) {
                     auto data = example.GetDataVector().ToArray();
                     std::vector<float> smallData(data.size());
@@ -227,8 +224,7 @@ namespace common
                     return ExampleType(std::move(transformedDataVector), example.GetMetadata());
                 });
             }
-            case model::Port::PortType::real:
-            {
+            case model::Port::PortType::real: {
                 return input.template Transform<ExampleType>([&compiledMap](const ExampleType& example) {
                     compiledMap.SetInputValue(0, example.GetDataVector().ToArray());
                     auto transformedDataVector = compiledMap.template ComputeOutput<typename ExampleType::DataVectorType>(0);
@@ -237,7 +233,7 @@ namespace common
             }
             default:
                 throw utilities::InputException(utilities::InputExceptionErrors::typeMismatch,
-                    utilities::FormatString("Unexpected input type %d, expecting float or double", type));
+                                                utilities::FormatString("Unexpected input type %d, expecting float or double", type));
             }
         }
     }

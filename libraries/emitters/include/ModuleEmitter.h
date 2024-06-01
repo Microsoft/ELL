@@ -139,7 +139,6 @@ namespace emitters
         void FreeVariable(Variable& var);
 
     private:
-
         CompilerOptions _options;
 
         EmittedVariableAllocator _inputVars; // Runtime input variable table

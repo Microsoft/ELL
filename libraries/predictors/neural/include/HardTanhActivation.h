@@ -70,7 +70,8 @@ namespace predictors
         template <typename ElementType>
         ElementType HardTanhActivation<ElementType>::Apply(const ElementType input) const
         {
-            return ((input < -1) ? -1 : (input > 1) ? 1 : input);
+            return ((input < -1) ? -1 : (input > 1) ? 1
+                                                    : input);
         }
 
         template <typename ElementType>
@@ -80,8 +81,8 @@ namespace predictors
             If(input < -1, [&] {
                 result = value::Cast<ElementType>(-1);
             }).ElseIf(input > 1, [&] {
-                result = value::Cast<ElementType>(1);
-            }).Else([&] {
+                  result = value::Cast<ElementType>(1);
+              }).Else([&] {
                 result = input;
             });
             return result;

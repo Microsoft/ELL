@@ -140,7 +140,6 @@ namespace model
         virtual emitters::ModuleEmitter* GetModuleEmitter() = 0;
 
     private:
-
         friend class CompilableNode;
 
         void CompileNodes(Model& model);

@@ -260,7 +260,10 @@ namespace value
                    value._data);
     }
 
-    bool Value::IsDefined() const { return _type.first != ValueType::Undefined; }
+    bool Value::IsDefined() const
+    {
+        return _type.first != ValueType::Undefined;
+    }
 
     bool Value::IsEmpty() const
     {
@@ -271,7 +274,10 @@ namespace value
             _data);
     }
 
-    bool Value::IsConstant() const { return !std::holds_alternative<Emittable>(_data); }
+    bool Value::IsConstant() const
+    {
+        return !std::holds_alternative<Emittable>(_data);
+    }
 
     bool Value::IsIntegral() const
     {
@@ -299,24 +305,45 @@ namespace value
         }
     }
 
-    bool Value::IsBoolean() const { return _type.first == ValueType::Boolean && !IsReference(); }
+    bool Value::IsBoolean() const
+    {
+        return _type.first == ValueType::Boolean && !IsReference();
+    }
 
-    bool Value::IsInt16() const { return _type.first == ValueType::Int16 && !IsReference(); }
+    bool Value::IsInt16() const
+    {
+        return _type.first == ValueType::Int16 && !IsReference();
+    }
 
-    bool Value::IsInt32() const { return _type.first == ValueType::Int32 && !IsReference(); }
+    bool Value::IsInt32() const
+    {
+        return _type.first == ValueType::Int32 && !IsReference();
+    }
 
-    bool Value::IsInt64() const { return _type.first == ValueType::Int64 && !IsReference(); }
+    bool Value::IsInt64() const
+    {
+        return _type.first == ValueType::Int64 && !IsReference();
+    }
 
     bool Value::IsFloatingPoint() const
     {
         return (_type.first == ValueType::Float || _type.first == ValueType::Double) && !IsReference();
     }
 
-    bool Value::IsFloat32() const { return _type.first == ValueType::Float && !IsReference(); }
+    bool Value::IsFloat32() const
+    {
+        return _type.first == ValueType::Float && !IsReference();
+    }
 
-    bool Value::IsDouble() const { return _type.first == ValueType::Double && !IsReference(); }
+    bool Value::IsDouble() const
+    {
+        return _type.first == ValueType::Double && !IsReference();
+    }
 
-    bool Value::IsReference() const { return _type.second > 1; }
+    bool Value::IsReference() const
+    {
+        return _type.second > 1;
+    }
 
     bool Value::IsIntegralReference() const
     {
@@ -344,34 +371,70 @@ namespace value
         }
     }
 
-    bool Value::IsBooleanReference() const { return _type.first == ValueType::Boolean && IsReference(); }
+    bool Value::IsBooleanReference() const
+    {
+        return _type.first == ValueType::Boolean && IsReference();
+    }
 
-    bool Value::IsShortReference() const { return _type.first == ValueType::Int16 && IsReference(); }
+    bool Value::IsShortReference() const
+    {
+        return _type.first == ValueType::Int16 && IsReference();
+    }
 
-    bool Value::IsInt32Reference() const { return _type.first == ValueType::Int32 && IsReference(); }
+    bool Value::IsInt32Reference() const
+    {
+        return _type.first == ValueType::Int32 && IsReference();
+    }
 
-    bool Value::IsInt64Reference() const { return _type.first == ValueType::Int64 && IsReference(); }
+    bool Value::IsInt64Reference() const
+    {
+        return _type.first == ValueType::Int64 && IsReference();
+    }
 
     bool Value::IsFloatingPointReference() const
     {
         return (_type.first == ValueType::Float || _type.first == ValueType::Double) && IsReference();
     }
 
-    bool Value::IsFloat32Reference() const { return _type.first == ValueType::Float && IsReference(); }
+    bool Value::IsFloat32Reference() const
+    {
+        return _type.first == ValueType::Float && IsReference();
+    }
 
-    bool Value::IsDoubleReference() const { return _type.first == ValueType::Double && IsReference(); }
+    bool Value::IsDoubleReference() const
+    {
+        return _type.first == ValueType::Double && IsReference();
+    }
 
-    bool Value::IsConstrained() const { return _layout.has_value(); }
+    bool Value::IsConstrained() const
+    {
+        return _layout.has_value();
+    }
 
-    const MemoryLayout& Value::GetLayout() const { return _layout.value(); }
+    const MemoryLayout& Value::GetLayout() const
+    {
+        return _layout.value();
+    }
 
-    Value Value::Reference() const { return GetContext().Reference(*this); }
+    Value Value::Reference() const
+    {
+        return GetContext().Reference(*this);
+    }
 
-    Value Value::Dereference() const { return GetContext().Dereference(*this); }
+    Value Value::Dereference() const
+    {
+        return GetContext().Dereference(*this);
+    }
 
-    Value Value::Offset(Value index) const { return GetContext().Offset(*this, index); }
+    Value Value::Offset(Value index) const
+    {
+        return GetContext().Offset(*this, index);
+    }
 
-    Value Value::Offset(Scalar index) const { return Offset(index.GetValue()); }
+    Value Value::Offset(Scalar index) const
+    {
+        return Offset(index.GetValue());
+    }
 
     Value Value::Offset(const std::vector<Scalar>& indices) const
     {
@@ -382,19 +445,40 @@ namespace value
         return GetContext().Offset(*this, indices);
     }
 
-    ValueType Value::GetBaseType() const { return _type.first; }
+    ValueType Value::GetBaseType() const
+    {
+        return _type.first;
+    }
 
-    void Value::SetLayout(MemoryLayout layout) { _layout = layout; }
+    void Value::SetLayout(MemoryLayout layout)
+    {
+        _layout = layout;
+    }
 
-    void Value::ClearLayout() { _layout.reset(); }
+    void Value::ClearLayout()
+    {
+        _layout.reset();
+    }
 
-    void Value::ClearData() { _data = Emittable{ nullptr }; }
+    void Value::ClearData()
+    {
+        _data = Emittable{ nullptr };
+    }
 
-    int Value::PointerLevel() const { return _type.second; }
+    int Value::PointerLevel() const
+    {
+        return _type.second;
+    }
 
-    Value::UnderlyingDataType& Value::GetUnderlyingData() { return _data; }
+    Value::UnderlyingDataType& Value::GetUnderlyingData()
+    {
+        return _data;
+    }
 
-    const Value::UnderlyingDataType& Value::GetUnderlyingData() const { return _data; }
+    const Value::UnderlyingDataType& Value::GetUnderlyingData() const
+    {
+        return _data;
+    }
 
     void Value::SetName(const std::string& name)
     {
@@ -407,11 +491,17 @@ namespace value
         return GetContext().GetName(*this);
     }
 
-    bool Value::HasCustomName() const { return _hasName; }
+    bool Value::HasCustomName() const
+    {
+        return _hasName;
+    }
 
     namespace detail
     {
-        Value StoreConstantData(ConstantData data) { return GetContext().StoreConstantData(data); }
+        Value StoreConstantData(ConstantData data)
+        {
+            return GetContext().StoreConstantData(data);
+        }
     } // namespace detail
 
 #define ADD_TO_STRING_ENTRY(NAMESPACE, OPERATOR) \

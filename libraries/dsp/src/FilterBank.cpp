@@ -46,7 +46,8 @@ namespace dsp
         _centerBin(centerBin),
         _highBin(highBin),
         _size(size),
-        _offset(offset) {}
+        _offset(offset)
+    {}
 
     double TriangleFilter::operator[](size_t index)
     {
@@ -201,7 +202,7 @@ namespace dsp
             if (v > _windowSize)
             {
                 throw utilities::InputException(utilities::InputExceptionErrors::indexOutOfRange,
-                    utilities::FormatString("TriangleFilterBank::SetBins received a value %d that is outside the _windowSize %d", (int)v, (int)_windowSize));
+                                                utilities::FormatString("TriangleFilterBank::SetBins received a value %d that is outside the _windowSize %d", (int)v, (int)_windowSize));
             }
         }
     }

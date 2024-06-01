@@ -712,7 +712,6 @@ namespace emitters
         /// <param name="forData"> Optional global constant that this function is for. If the data is optimized away, then the finalization function will be also. </param>
         void AddFinalizationFunction(IRFunctionEmitter& function, int priority = 65536, llvm::Constant* forData = nullptr);
 
-
         /// <summary> Return the typed CallbackRegistry object that is used to manage any std::functions defined
         /// on any SourceNodes or SinkNodes in the graph. </summary>
         template <typename ElementType>

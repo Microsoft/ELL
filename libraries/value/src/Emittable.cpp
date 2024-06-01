@@ -16,7 +16,8 @@ namespace value
     Emittable::Emittable() = default;
 
     Emittable::Emittable(void* data) :
-        _data(data) {}
+        _data(data)
+    {}
 
 } // namespace value
 } // namespace ell

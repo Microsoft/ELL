@@ -15,7 +15,8 @@ namespace utilities
     MillisecondTimer::MillisecondTimer() :
         _start(std::chrono::system_clock::now()),
         _elapsedTime(std::chrono::system_clock::duration::zero()),
-        _running(true) {}
+        _running(true)
+    {}
 
     void MillisecondTimer::Start()
     {

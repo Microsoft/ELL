@@ -198,7 +198,7 @@ namespace common
             "gva",
             "The number of bytes to align global buffers to",
             32);
-        
+
         parser.AddOption(
             skip_ellcode,
             "skip_ellcode",

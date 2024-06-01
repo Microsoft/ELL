@@ -8,8 +8,8 @@
 
 #include "UnrolledConvolutionNode.h"
 #include "ConstantNode.h"
-#include "MatrixMatrixMultiplyNode.h"
 #include "MatrixMatrixMultiplyCodeNode.h"
+#include "MatrixMatrixMultiplyNode.h"
 #include "ReceptiveFieldMatrixNode.h"
 #include "ReorderDataCodeNode.h"
 #include <value/include/LLVMContext.h>
@@ -96,16 +96,16 @@ namespace nodes
     bool UnrolledConvolutionNode<ValueType>::IsELLCodeTarget(model::ModelTransformer& transformer) const
     {
         auto compiler = dynamic_cast<const model::IRMapCompiler*>(transformer.GetContext().GetCompiler());
-        if(compiler != nullptr)
+        if (compiler != nullptr)
         {
             auto device_name = compiler->GetCompilerOptions().targetDevice.deviceName;
             bool skip_ELLCode = compiler->GetCompilerOptions().skip_ellcode;
             if (device_name.compare("pi3") == 0 && !skip_ELLCode)
             {
-               return true;
+                return true;
             }
         }
- 
+
         return false;
     }
 
@@ -175,7 +175,7 @@ namespace nodes
         if (dataOrder == rcdOrder) // don't reorder input -- use old method
         {
             auto receptiveFieldMatrixNode = transformer.AddNode<ReceptiveFieldMatrixNode<ValueType>>(newInput, inputLayout, filterSize, _stride, inputPadding, dataOrder, outputImageWidth, outputImageHeight);
-            if(isELLCodeTarget)
+            if (isELLCodeTarget)
             {
                 auto matrixMultNode = transformer.AddNode<MatrixMatrixMultiplyCodeNode<ValueType>>(weights, m, n, k, lda, false, receptiveFieldMatrixNode->output, ldb, false, ldc, true);
                 if (outputPadding != 0)
@@ -207,7 +207,6 @@ namespace nodes
                     transformer.MapNodeOutput(this->output, matrixMultNode->output);
                 }
             }
-            
         }
         else // reorder input to be channels x rows x columns (drc) (then we can use the 'new' receptive field matrix generation)
         {
@@ -219,7 +218,7 @@ namespace nodes
             const auto& reorderedInput = ReorderDataWithCodeNode(newInput, inputLayout, transposedInputLayout);
 
             auto receptiveFieldMatrixNode = transformer.AddNode<ReceptiveFieldMatrixNode<ValueType>>(reorderedInput, reorderedInput.GetMemoryLayout(), _filterSize, _stride, inputPadding, dataOrder, outputImageWidth, outputImageHeight);
-            if(isELLCodeTarget)
+            if (isELLCodeTarget)
             {
                 auto matrixMultNode = transformer.AddNode<MatrixMatrixMultiplyCodeNode<ValueType>>(weights, m, n, k, lda, false, receptiveFieldMatrixNode->output, ldb, false, ldc, true);
                 if (outputPadding != 0)
@@ -237,7 +236,7 @@ namespace nodes
             }
             else
             {
-                auto matrixMultNode = transformer.AddNode<MatrixMatrixMultiplyNode<ValueType>>(weights, m, n, k, lda, false, receptiveFieldMatrixNode->output, ldb, false, ldc, true);    
+                auto matrixMultNode = transformer.AddNode<MatrixMatrixMultiplyNode<ValueType>>(weights, m, n, k, lda, false, receptiveFieldMatrixNode->output, ldb, false, ldc, true);
                 if (outputPadding != 0)
                 {
                     // Add padding
@@ -250,7 +249,7 @@ namespace nodes
                 {
                     transformer.MapNodeOutput(this->output, matrixMultNode->output);
                 }
-            }       
+            }
         }
         return true;
     }

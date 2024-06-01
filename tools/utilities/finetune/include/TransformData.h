@@ -39,4 +39,4 @@ double GetModelAccuracy(const ell::model::OutputPortBase& output, const VectorLa
 
 template <typename DataVectorType>
 DataVectorType RemovePadding(const DataVectorType& data, const ell::utilities::MemoryLayout& layout);
-}
+} // namespace ell

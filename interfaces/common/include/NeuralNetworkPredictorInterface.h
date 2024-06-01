@@ -8,8 +8,8 @@
 #pragma once
 
 #include "MathInterface.h"
-#include "Ports.h"
 #include "NeuralLayersInterface.h"
+#include "Ports.h"
 
 #ifndef SWIG
 #include <predictors/include/NeuralNetworkPredictor.h>

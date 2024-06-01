@@ -9,8 +9,8 @@
 #include "Port.h"
 #include "Node.h"
 
-#include <utilities/include/StringUtil.h>
 #include <utilities/include/Boolean.h>
+#include <utilities/include/StringUtil.h>
 
 #include <cctype>
 

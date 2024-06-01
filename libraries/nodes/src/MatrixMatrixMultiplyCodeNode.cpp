@@ -24,9 +24,9 @@
 #include <value/include/loopnests/Kernel.h>
 #include <value/include/loopnests/LoopNest.h>
 
+#include <llvm/Analysis/TargetTransformInfo.h>
 #include <value/include/CachingStrategies.h>
 #include <value/include/LLVMContext.h>
-#include <llvm/Analysis/TargetTransformInfo.h>
 
 //using namespace ell::utilities;
 using namespace ell::value;
@@ -209,9 +209,9 @@ namespace nodes
 
         loop.AddKernel(kernel, loopnests::LoopFragmentType::body);
         loop.SetLoopOrder({ m, k, n });
-                auto outputC = matC.GetValue();
-            outputC.SetLayout({ { (int)matC.Size() } });
-          //  ell::DebugPrintVector(outputC);
+        auto outputC = matC.GetValue();
+        outputC.SetLayout({ { (int)matC.Size() } });
+        //  ell::DebugPrintVector(outputC);
         loopnests::CodeGenerator generator;
         generator.Run(loop);
     }
@@ -251,7 +251,7 @@ namespace nodes
         const int InnerDimension = (int)(A.Columns());
         const int kUnroll = 4;
         int columnBlock = std::min(64, OutputColumns);
-        int innerDimensionBlock = std::min(256, InnerDimension);    
+        int innerDimensionBlock = std::min(256, InnerDimension);
 
         // Declare indexes
         loopnests::Index i("i"), j("j"), k("k");
@@ -265,7 +265,7 @@ namespace nodes
                             C_(i_, j_) += B_(k_, j_) * A_(i_, k_);
                         });
         auto& schedule = nest.GetSchedule();
-        
+
         auto topLevelJ = j;
         auto topLevelK = k;
 
@@ -280,24 +280,24 @@ namespace nodes
         // Set the order
         schedule.SetOrder({ jCache, kCache, iKernelOuter, jKernelOuter2, kBlock, k, i, jKernelOuter, j });
 
-        // Set up caching    
+        // Set up caching
         if ((OutputColumns > NumColumnsInKernel) && ((OutputColumns % NumColumnsInKernel) == 0))
         {
             auto extraCacheBParams = std::make_tuple(NumColumnsInKernel, jKernelOuter2, BoundaryConditionHandling::ZeroPadding);
             schedule.template Cache<BLASTCopy>(B,
-                                    { topLevelK, topLevelJ },
-                                    { innerDimensionBlock, columnBlock },
-                                    { kCache, jCache },
-                                    std::nullopt, // Order isn't used by BLASTCopy
-                                    extraCacheBParams);
+                                               { topLevelK, topLevelJ },
+                                               { innerDimensionBlock, columnBlock },
+                                               { kCache, jCache },
+                                               std::nullopt, // Order isn't used by BLASTCopy
+                                               extraCacheBParams);
         }
         auto extraZeroInputReduceOutputParams = std::make_tuple(vectorSize);
         schedule.template Cache<ZeroInputReduceOutput>(C,
-                                            { iKernelOuter, jKernelOuter2 },
-                                            { NumRowsInKernel, NumColumnsInKernel },
-                                            { iKernelOuter, jKernelOuter2 },
-                                            utilities::RowMajorMatrixOrder,
-                                            extraZeroInputReduceOutputParams);
+                                                       { iKernelOuter, jKernelOuter2 },
+                                                       { NumRowsInKernel, NumColumnsInKernel },
+                                                       { iKernelOuter, jKernelOuter2 },
+                                                       utilities::RowMajorMatrixOrder,
+                                                       extraZeroInputReduceOutputParams);
 
         // Set unrolling
         schedule.Unroll(jKernelOuter);
@@ -320,83 +320,81 @@ namespace nodes
 
     template <typename ValueType>
     void MatrixMatrixMultiplyCodeNode<ValueType>::ParallelizeGemmCol(Matrix A, Matrix B, Matrix C, int numThreads)
-    {    
-        const int columns = B.Columns() / numThreads; 
+    {
+        const int columns = B.Columns() / numThreads;
         const int col_spill = B.Columns() % numThreads;
 
         Parallelize(
             numThreads,
             std::tuple{ A, B, C },
-            [=](value::Scalar id, value::Matrix A, value::Matrix B, value::Matrix C) 
-            {
-                value::Scalar colStart = id * value::Scalar{columns};
+            [=](value::Scalar id, value::Matrix A, value::Matrix B, value::Matrix C) {
+                value::Scalar colStart = id * value::Scalar{ columns };
                 int thread_seq = 0;
 
                 EmitterContext::IfContext IfCxt = If(id == thread_seq,
-                [&] {
-                        GemmFn(
-                            A,
-                            B.SubMatrix(value::Scalar{0}, colStart, (int)B.Rows(), columns),
-                            C.SubMatrix(value::Scalar{0}, colStart, (int)C.Rows(), columns),
-                            thread_seq);
-                });
-                
+                                                     [&] {
+                                                         GemmFn(
+                                                             A,
+                                                             B.SubMatrix(value::Scalar{ 0 }, colStart, (int)B.Rows(), columns),
+                                                             C.SubMatrix(value::Scalar{ 0 }, colStart, (int)C.Rows(), columns),
+                                                             thread_seq);
+                                                     });
+
                 thread_seq++;
 
-                for(int i = thread_seq; i < numThreads; i++)
+                for (int i = thread_seq; i < numThreads; i++)
                 {
                     IfCxt.ElseIf(id == i,
-                    [&] {
-                            int actualColumns = i==(numThreads-1) ? columns + col_spill : columns;
-                            
-                            GemmFn(
-                                A,
-                                B.SubMatrix(value::Scalar{0}, colStart, (int)B.Rows(), actualColumns),
-                                C.SubMatrix(value::Scalar{0}, colStart, (int)C.Rows(), actualColumns),
-                                i);
-                    });
+                                 [&] {
+                                     int actualColumns = i == (numThreads - 1) ? columns + col_spill : columns;
+
+                                     GemmFn(
+                                         A,
+                                         B.SubMatrix(value::Scalar{ 0 }, colStart, (int)B.Rows(), actualColumns),
+                                         C.SubMatrix(value::Scalar{ 0 }, colStart, (int)C.Rows(), actualColumns),
+                                         i);
+                                 });
                 }
-            }); 
+            });
     }
 
     template <typename ValueType>
     void MatrixMatrixMultiplyCodeNode<ValueType>::ParallelizeGemmRow(Matrix A, Matrix B, Matrix C, int numThreads)
-    {    
+    {
         const int rows = A.Rows() / numThreads;
         const int row_spill = A.Rows() % numThreads;
 
         Parallelize(
             numThreads,
             std::tuple{ A, B, C },
-            [=](value::Scalar id, value::Matrix A, value::Matrix B, value::Matrix C) 
-            {
-                value::Scalar rowStart = id * value::Scalar{rows};
+            [=](value::Scalar id, value::Matrix A, value::Matrix B, value::Matrix C) {
+                value::Scalar rowStart = id * value::Scalar{ rows };
                 int thread_seq = 0;
 
                 EmitterContext::IfContext IfCxt = If(id == thread_seq,
-                [&] {
-                        GemmFn(
-                            A.SubMatrix(rowStart, value::Scalar{0}, rows, (int)A.Columns()),
-                            B,
-                            C.SubMatrix(rowStart, value::Scalar{0}, rows, (int)C.Columns()),
-                            thread_seq);
-                });
-                
+                                                     [&] {
+                                                         GemmFn(
+                                                             A.SubMatrix(rowStart, value::Scalar{ 0 }, rows, (int)A.Columns()),
+                                                             B,
+                                                             C.SubMatrix(rowStart, value::Scalar{ 0 }, rows, (int)C.Columns()),
+                                                             thread_seq);
+                                                     });
+
                 thread_seq++;
 
-                for(int i = thread_seq; i < numThreads; i++)
+                for (int i = thread_seq; i < numThreads; i++)
                 {
                     IfCxt.ElseIf(id == i,
-                    [&] {
-                            int actualRows = i==(numThreads-1) ? rows + row_spill : rows;
-                            GemmFn(
-                                A.SubMatrix(rowStart, value::Scalar{0}, actualRows, (int)A.Columns()),
-                                B,
-                                C.SubMatrix(rowStart, value::Scalar{0}, actualRows, (int)C.Columns()),
-                                i);
-                    });
+                                 [&] {
+                                     int actualRows = i == (numThreads - 1) ? rows + row_spill : rows;
+                                     GemmFn(
+                                         A.SubMatrix(rowStart, value::Scalar{ 0 }, actualRows, (int)A.Columns()),
+                                         B,
+                                         C.SubMatrix(rowStart, value::Scalar{ 0 }, actualRows, (int)C.Columns()),
+                                         i);
+                                 });
                 }
-        }); 
+            });
     }
 
     template <typename ValueType>
@@ -408,7 +406,7 @@ namespace nodes
         const size_t maxThreads = 4;
         size_t numThreads = maxThreads;
 
-        if (computationSize < double(minThreadLoad * maxThreads)) 
+        if (computationSize < double(minThreadLoad * maxThreads))
         {
             numThreads = std::min(int(computationSize / double(minThreadLoad)) + 1, int(maxThreads));
         }
@@ -440,12 +438,12 @@ namespace nodes
             auto tempC = valueC;
             if (_transposeOutput)
             {
-                tempC.SetLayout(utilities::MemoryLayout({ _n, _m }, utilities::DimensionOrder{1, 0}));
+                tempC.SetLayout(utilities::MemoryLayout({ _n, _m }, utilities::DimensionOrder{ 1, 0 }));
             }
             else
             {
                 tempC.SetLayout(utilities::MemoryLayout({ _m, _n }));
-            }            
+            }
 
             auto matA = value::Matrix(tempA);
             auto matB = value::Matrix(tempB);

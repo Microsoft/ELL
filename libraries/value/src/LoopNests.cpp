@@ -165,13 +165,16 @@ namespace value
 
     LoopNest::LoopNest() :
         _impl(std::make_unique<LoopNestImpl>()),
-        _schedule(*this) {}
+        _schedule(*this)
+    {}
     LoopNest::LoopNest(const LoopNest& other) :
         _impl(std::make_unique<LoopNestImpl>(*other._impl)),
-        _schedule(*this) {}
+        _schedule(*this)
+    {}
     LoopNest::LoopNest(LoopNest&& other) noexcept :
         _impl(std::move(other._impl)),
-        _schedule(*this) {}
+        _schedule(*this)
+    {}
 
     LoopNest& LoopNest::operator=(const LoopNest& other)
     {

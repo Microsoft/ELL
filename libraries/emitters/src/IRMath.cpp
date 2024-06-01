@@ -6,8 +6,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "EmitterException.h"
 #include "IRMath.h"
+#include "EmitterException.h"
 #include "IRModuleEmitter.h"
 
 #include <utilities/include/Exception.h>

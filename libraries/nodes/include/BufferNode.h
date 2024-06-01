@@ -8,7 +8,6 @@
 
 #pragma once
 
-
 #include <model/include/CompilableCodeNode.h>
 #include <model/include/IRMapCompiler.h>
 #include <model/include/InputPort.h>
@@ -30,8 +29,8 @@ namespace nodes
 {
     /// <summary> A node that combines one or more input buffers returning a larger window over that input.
     /// On each new input the buffer is shifted left by the size of that input.  For example, if the input size
-    /// is 8 and the windowSize is 16 and the inputs are given in the sequence i1, i2, i3, i4 then the output 
-    /// of the buffer node will be [0 i1], [i1 i2], [i2, i3], [i3 i4].  So if you think of the input as a 
+    /// is 8 and the windowSize is 16 and the inputs are given in the sequence i1, i2, i3, i4 then the output
+    /// of the buffer node will be [0 i1], [i1 i2], [i2, i3], [i3 i4].  So if you think of the input as a
     /// series of values over time (like audio signal) then the BufferNode provides a sliding window over that
     /// input data.
     /// </summary>

@@ -1619,13 +1619,11 @@ namespace dsp
 
         switch (order)
         {
-        case WinogradFilterOrder::filtersFirst:
-        {
+        case WinogradFilterOrder::filtersFirst: {
             Convolve2DWinogradFiltersFirst(input, transformedFilters, numFilters, tileSize, filterSize, output);
         }
         break;
-        case WinogradFilterOrder::tilesFirst:
-        {
+        case WinogradFilterOrder::tilesFirst: {
             auto transformedInputScratch = AllocateScratchInput<ValueType>(numOutputRows, numOutputColumns, numChannels, tileSize, filterSize, order);
             auto transformedOutputScratch = AllocateScratchOutput<ValueType>(numOutputRows, numOutputColumns, numFilters, tileSize, filterSize, order);
             Convolve2DWinogradTilesFirst(input, transformedFilters, numFilters, tileSize, filterSize, transformedInputScratch, transformedOutputScratch, output);

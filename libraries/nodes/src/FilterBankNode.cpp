@@ -73,7 +73,7 @@ namespace nodes
         auto endVar = module.ConstantArray("filterEnd_"s + GetInternalStateIdentifier(), endBins);
 
         auto offset = function.LocalScalar<ValueType>(_filters.GetOffset());
-        
+
         // Get port variables
         emitters::LLVMValue pInput = compiler.EnsurePortEmitted(input);
         emitters::LLVMValue pOutput = compiler.EnsurePortEmitted(output);

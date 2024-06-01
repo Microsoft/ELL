@@ -6,8 +6,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "DetectLowPrecisionConvolutionTransformation.h"
 #include "StandardTransformations.h"
+#include "DetectLowPrecisionConvolutionTransformation.h"
 #include "FuseLinearOperationsTransformation.h"
 #include "OptimizeReorderDataNodesTransformation.h"
 #include "SetConvolutionMethodTransformation.h"

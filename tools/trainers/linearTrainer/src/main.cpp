@@ -147,14 +147,12 @@ int main(int argc, char* argv[])
         case LinearTrainerArguments::Algorithm::SparseDataSGD:
             trainer = common::MakeSparseDataSGDTrainer(trainerArguments.lossFunctionArguments, { linearTrainerArguments.regularization, linearTrainerArguments.randomSeedString });
             break;
-        case LinearTrainerArguments::Algorithm::SparseDataCenteredSGD:
-        {
+        case LinearTrainerArguments::Algorithm::SparseDataCenteredSGD: {
             auto mean = trainers::CalculateMean(mappedDataset.GetAnyDataset());
             trainer = common::MakeSparseDataCenteredSGDTrainer(trainerArguments.lossFunctionArguments, mean, { linearTrainerArguments.regularization, linearTrainerArguments.randomSeedString });
             break;
         }
-        case LinearTrainerArguments::Algorithm::SDCA:
-        {
+        case LinearTrainerArguments::Algorithm::SDCA: {
             trainer = common::MakeSDCATrainer(trainerArguments.lossFunctionArguments, { linearTrainerArguments.regularization, linearTrainerArguments.desiredPrecision, linearTrainerArguments.maxEpochs, linearTrainerArguments.permute, linearTrainerArguments.randomSeedString });
             break;
         }
@@ -192,14 +190,12 @@ int main(int argc, char* argv[])
             // Create a new map with the linear predictor appended.
             switch (map.GetOutputType())
             {
-            case model::Port::PortType::smallReal:
-            {
+            case model::Port::PortType::smallReal: {
                 auto outputMap = AppendTrainedLinearPredictorToMap<float>(trainer->GetPredictor(), map, mappedDatasetDimension);
                 common::SaveMap(outputMap, modelSaveArguments.outputModelFilename);
             }
             break;
-            case model::Port::PortType::real:
-            {
+            case model::Port::PortType::real: {
                 auto outputMap = AppendTrainedLinearPredictorToMap<double>(trainer->GetPredictor(), map, mappedDatasetDimension);
                 common::SaveMap(outputMap, modelSaveArguments.outputModelFilename);
             }

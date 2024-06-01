@@ -135,14 +135,12 @@ namespace emitters
         VariableScope scope = var.Scope();
         switch (scope)
         {
-        case VariableScope::local:
-        {
+        case VariableScope::local: {
             auto v = var.GetAssignedVar();
             _localVars.Free(v);
         }
         break;
-        case VariableScope::global:
-        {
+        case VariableScope::global: {
             auto v = var.GetAssignedVar();
             _globalVars.Free(v);
         }

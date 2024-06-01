@@ -8,10 +8,10 @@
 
 #pragma once
 
+#include <cmath>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <cmath>
 
 namespace ell
 {

@@ -90,8 +90,7 @@ private:
 };
 
 // Tests
-void
-TestCopySubmodel()
+void TestCopySubmodel()
 {
     // Tests the function:
     //

@@ -157,7 +157,6 @@ namespace value
         return Matrix(Allocate<T>(utilities::MemoryLayout({ rows, columns })), name);
     }
 
-
     /// <summary> Constructs a statically-allocated instance with the specified dimensions </summary>
     /// <param name="rows"> The number of rows of the allocated matrix </param>
     /// <param name="columns"> The number of columns of the allocated matrix </param>
@@ -167,7 +166,7 @@ namespace value
     {
         return Matrix(StaticAllocate(name, type, utilities::MemoryLayout({ rows, columns })));
     }
-    
+
     /// <summary> Constructs a statically-allocated instance with the specified dimensions </summary>
     /// <typeparam name="T"> Any fundamental type accepted by Value </typeparam>
     /// <param name="rows"> The number of rows of the allocated matrix </param>

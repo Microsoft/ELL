@@ -30,8 +30,8 @@
 #include <nodes/include/DiagonalConvolutionNode.h>
 #include <nodes/include/DotProductNode.h>
 #include <nodes/include/ExtremalValueNode.h>
-#include <nodes/include/FastGRNNNode.h>
 #include <nodes/include/FFTNode.h>
+#include <nodes/include/FastGRNNNode.h>
 #include <nodes/include/FilterBankNode.h>
 #include <nodes/include/ForestPredictorNode.h>
 #include <nodes/include/GRUNode.h>
@@ -41,8 +41,8 @@
 #include <nodes/include/L2NormSquaredNode.h>
 #include <nodes/include/LSTMNode.h>
 #include <nodes/include/LinearPredictorNode.h>
-#include <nodes/include/MatrixMatrixMultiplyNode.h>
 #include <nodes/include/MatrixMatrixMultiplyCodeNode.h>
+#include <nodes/include/MatrixMatrixMultiplyNode.h>
 #include <nodes/include/MatrixVectorMultiplyNode.h>
 #include <nodes/include/MatrixVectorProductNode.h>
 #include <nodes/include/MovingAverageNode.h>
@@ -53,8 +53,8 @@
 #include <nodes/include/RNNNode.h>
 #include <nodes/include/ReceptiveFieldMatrixNode.h>
 #include <nodes/include/ReinterpretLayoutNode.h>
-#include <nodes/include/ReorderDataNode.h>
 #include <nodes/include/ReorderDataCodeNode.h>
+#include <nodes/include/ReorderDataNode.h>
 #include <nodes/include/ScalingNode.h>
 #include <nodes/include/SimpleConvolutionNode.h>
 #include <nodes/include/SinkNode.h>

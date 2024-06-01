@@ -212,6 +212,7 @@ public:
     SourceNode() = default;
     SourceNode(ell::model::SourceNodeBase* other, std::shared_ptr<ell::model::Model> model);
     ell::model::SourceNodeBase* GetSourceNode() const;
+
 private:
     ell::model::SourceNodeBase* _sourceNode;
 #endif
@@ -235,6 +236,7 @@ public:
     SinkNode() = default;
     SinkNode(ell::model::SinkNodeBase* other, std::shared_ptr<ell::model::Model> model);
     ell::model::SinkNodeBase* GetSinkNode() const;
+
 private:
     ell::model::SinkNodeBase* _sinkNode;
 #endif
@@ -380,7 +382,10 @@ public:
     std::vector<int64_t> ComputeInt64(const std::vector<int64_t>& inputData);
 
 #ifndef SWIG
-    std::shared_ptr<ell::model::Map> GetInnerMap() const { return _map; }
+    std::shared_ptr<ell::model::Map> GetInnerMap() const
+    {
+        return _map;
+    }
 #endif
 
 private:

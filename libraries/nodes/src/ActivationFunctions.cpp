@@ -16,7 +16,6 @@
 
 #include <value/include/Emittable.h>
 
-
 namespace ell
 {
 namespace nodes
@@ -34,13 +33,14 @@ namespace nodes
         constexpr auto bias = static_cast<ValueType>(0.5);
         auto lowBound = -bias / scale;
         auto highBound = (1 - bias) / scale;
-        return x < lowBound ? 0 : x > highBound ? 1 : (scale * x) + bias;
+        return x < lowBound ? 0 : x > highBound ? 1
+                                                : (scale * x) + bias;
     }
 
     template <typename ValueType>
     emitters::LLVMValue HardSigmoidActivationFunction<ValueType>::Compile(emitters::IRFunctionEmitter& function, emitters::LLVMValue xValue) const
     {
-        emitters::IRLocalScalar x{ function,xValue };
+        emitters::IRLocalScalar x{ function, xValue };
         return Compile(x).value;
     }
 
@@ -66,7 +66,8 @@ namespace nodes
     template <typename ValueType>
     ValueType HardTanhActivationFunction<ValueType>::Compute(ValueType x) const
     {
-        return x <= -1 ? -1 : x >= 1 ? 1 : x;
+        return x <= -1 ? -1 : x >= 1 ? 1
+                                     : x;
     }
 
     template <typename ValueType>
@@ -136,7 +137,7 @@ namespace nodes
     template <typename ValueType>
     emitters::LLVMValue SigmoidActivationFunction<ValueType>::Compile(emitters::IRFunctionEmitter& function, emitters::LLVMValue xValue) const
     {
-        emitters::IRLocalScalar x{ function,xValue };
+        emitters::IRLocalScalar x{ function, xValue };
         return Compile(x).value;
     }
 

@@ -275,25 +275,55 @@ namespace emittable_functions
         _impl->_tracker.Reset();
     }
 
-    double VoiceActivityDetector::GetSampleRate() const { return _impl->_sampleRate; }
+    double VoiceActivityDetector::GetSampleRate() const
+    {
+        return _impl->_sampleRate;
+    }
 
-    double VoiceActivityDetector::GetWindowSize() const { return _impl->_windowSize; }
+    double VoiceActivityDetector::GetWindowSize() const
+    {
+        return _impl->_windowSize;
+    }
 
-    double VoiceActivityDetector::GetFrameDuration() const { return _impl->_frameDuration; }
+    double VoiceActivityDetector::GetFrameDuration() const
+    {
+        return _impl->_frameDuration;
+    }
 
-    double VoiceActivityDetector::GetTauUp() const { return _impl->_tracker._tauUp; }
+    double VoiceActivityDetector::GetTauUp() const
+    {
+        return _impl->_tracker._tauUp;
+    }
 
-    double VoiceActivityDetector::GetTauDown() const { return _impl->_tracker._tauDown; }
+    double VoiceActivityDetector::GetTauDown() const
+    {
+        return _impl->_tracker._tauDown;
+    }
 
-    double VoiceActivityDetector::GetLargeInput() const { return _impl->_tracker._largeInput; }
+    double VoiceActivityDetector::GetLargeInput() const
+    {
+        return _impl->_tracker._largeInput;
+    }
 
-    double VoiceActivityDetector::GetGainAtt() const { return _impl->_tracker._gainAtt; }
+    double VoiceActivityDetector::GetGainAtt() const
+    {
+        return _impl->_tracker._gainAtt;
+    }
 
-    double VoiceActivityDetector::GetThresholdUp() const { return _impl->_tracker._thresholdUp; }
+    double VoiceActivityDetector::GetThresholdUp() const
+    {
+        return _impl->_tracker._thresholdUp;
+    }
 
-    double VoiceActivityDetector::GetThresholdDown() const { return _impl->_tracker._thresholdDown; }
+    double VoiceActivityDetector::GetThresholdDown() const
+    {
+        return _impl->_tracker._thresholdDown;
+    }
 
-    double VoiceActivityDetector::GetLevelThreshold() const { return _impl->_tracker._levelThreshold; }
+    double VoiceActivityDetector::GetLevelThreshold() const
+    {
+        return _impl->_tracker._levelThreshold;
+    }
 
     Scalar VoiceActivityDetector::Process(const Vector data)
     {
@@ -322,7 +352,10 @@ namespace emittable_functions
         return signal;
     }
 
-    const std::vector<double>& VoiceActivityDetector::GetWeights() const { return _impl->_cmw.GetWeights(); }
+    const std::vector<double>& VoiceActivityDetector::GetWeights() const
+    {
+        return _impl->_cmw.GetWeights();
+    }
 
     bool VoiceActivityDetector::Equals(const VoiceActivityDetector& other) const
     {

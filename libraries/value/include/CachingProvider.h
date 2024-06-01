@@ -43,7 +43,7 @@ namespace value
         std::vector<Index> _kernelIndices;
         std::vector<Index> _atIndices;
         std::any _extra;
-        
+
     private:
         virtual void HandleCachingImpl(LoopNest&) = 0;
     };

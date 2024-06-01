@@ -193,15 +193,14 @@ void TestMapClockNode()
     auto map = model::Map(model, { { "clockInput", in } }, { { "sinkOutput", sink->output } });
     TestMapSerialization(map);
 
-    std::vector<std::vector<nodes::TimeTickType>> clockValues =
-        {
-            { 0 },
-            { interval * 1 + lagThreshold / 2 }, // within threshold
-            { interval * 2 }, // on time
-            { interval * 3 + lagThreshold }, // late
-            { interval * 4 + lagThreshold * 20 }, // really late
-            { interval * 5 } // on time
-        };
+    std::vector<std::vector<nodes::TimeTickType>> clockValues = {
+        { 0 },
+        { interval * 1 + lagThreshold / 2 }, // within threshold
+        { interval * 2 }, // on time
+        { interval * 3 + lagThreshold }, // late
+        { interval * 4 + lagThreshold * 20 }, // really late
+        { interval * 5 } // on time
+    };
 
     for (const auto& input : clockValues)
     {

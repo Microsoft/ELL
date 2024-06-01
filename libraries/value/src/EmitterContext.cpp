@@ -141,7 +141,10 @@ namespace value
         return std::nullopt;
     }
 
-    detail::ValueTypeDescription EmitterContext::GetType(Emittable emittable) { return GetTypeImpl(emittable); }
+    detail::ValueTypeDescription EmitterContext::GetType(Emittable emittable)
+    {
+        return GetTypeImpl(emittable);
+    }
 
     EmitterContext::DefinedFunction EmitterContext::CreateFunction(FunctionDeclaration decl, EmitterContext::DefinedFunction fn)
     {
@@ -153,7 +156,10 @@ namespace value
         return IsFunctionDefinedImpl(decl);
     }
 
-    Value EmitterContext::StoreConstantData(ConstantData data) { return StoreConstantDataImpl(data); }
+    Value EmitterContext::StoreConstantData(ConstantData data)
+    {
+        return StoreConstantDataImpl(data);
+    }
 
     void EmitterContext::For(MemoryLayout layout, std::function<void(std::vector<Scalar>)> fn, const std::string& name)
     {
@@ -180,11 +186,20 @@ namespace value
         return ForImpl(start, stop, step, fn, name);
     }
 
-    void EmitterContext::MoveData(Value& source, Value& destination) { return MoveDataImpl(source, destination); }
+    void EmitterContext::MoveData(Value& source, Value& destination)
+    {
+        return MoveDataImpl(source, destination);
+    }
 
-    void EmitterContext::CopyData(const Value& source, Value& destination) { return CopyDataImpl(source, destination); }
+    void EmitterContext::CopyData(const Value& source, Value& destination)
+    {
+        return CopyDataImpl(source, destination);
+    }
 
-    Value EmitterContext::Reference(Value source) { return ReferenceImpl(source); }
+    Value EmitterContext::Reference(Value source)
+    {
+        return ReferenceImpl(source);
+    }
 
     Value EmitterContext::Dereference(Value source)
     {
@@ -200,7 +215,10 @@ namespace value
         return DereferenceImpl(source);
     }
 
-    Value EmitterContext::Offset(Value begin, Value index) { return OffsetImpl(begin, index); }
+    Value EmitterContext::Offset(Value begin, Value index)
+    {
+        return OffsetImpl(begin, index);
+    }
 
     Value EmitterContext::Offset(Value begin, std::vector<Scalar> coordinates)
     {
@@ -210,7 +228,10 @@ namespace value
         return Offset(begin, result.GetValue());
     }
 
-    Value EmitterContext::UnaryOperation(ValueUnaryOperation op, Value value) { return UnaryOperationImpl(op, value); }
+    Value EmitterContext::UnaryOperation(ValueUnaryOperation op, Value value)
+    {
+        return UnaryOperationImpl(op, value);
+    }
 
     Value EmitterContext::BinaryOperation(ValueBinaryOperation op, Value destination, Value source)
     {
@@ -430,9 +451,15 @@ namespace value
         return *s_context;
     }
 
-    void SetContext(EmitterContext& context) { s_context = &context; }
+    void SetContext(EmitterContext& context)
+    {
+        s_context = &context;
+    }
 
-    void ClearContext() noexcept { s_context = nullptr; }
+    void ClearContext() noexcept
+    {
+        s_context = nullptr;
+    }
 
     ContextGuard<>::ContextGuard(EmitterContext& context) :
         _oldContext(s_context)
@@ -440,7 +467,10 @@ namespace value
         SetContext(context);
     }
 
-    ContextGuard<>::~ContextGuard() { _oldContext ? SetContext(*_oldContext) : ClearContext(); }
+    ContextGuard<>::~ContextGuard()
+    {
+        _oldContext ? SetContext(*_oldContext) : ClearContext();
+    }
 
     Value Allocate(ValueType type, size_t size, size_t align, AllocateFlags flags)
     {
@@ -462,7 +492,10 @@ namespace value
         return GetContext().GlobalAllocate(name, type, layout, flags);
     }
 
-    EmitterContext::IfContext If(Scalar test, std::function<void()> fn) { return GetContext().If(test, fn); }
+    EmitterContext::IfContext If(Scalar test, std::function<void()> fn)
+    {
+        return GetContext().If(test, fn);
+    }
 
     void While(Scalar test, std::function<void()> fn)
     {
@@ -710,8 +743,7 @@ namespace value
         {
             If(v == Cast(0, v.GetType()), [&] {
                 r = Cast(1, v.GetType());
-            })
-            .Else([&] {
+            }).Else([&] {
                 r = Cast(0, v.GetType());
             });
         }

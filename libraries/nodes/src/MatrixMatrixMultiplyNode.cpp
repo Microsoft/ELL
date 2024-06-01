@@ -333,16 +333,12 @@ namespace nodes
 
     // Explicitly instantiate versions
     template class MatrixMatrixMultiplyNode<float>;
-    template 
-    const model::OutputPort<float>& MatrixMatrixMultiply(const model::OutputPort<float>& input1, const model::OutputPort<float>& input2);
-    template 
-    const model::OutputPort<float>& MatrixMatrixMultiply(const model::OutputPort<float>& input1, const model::OutputPort<float>& input2, const model::PortMemoryLayout& outputMemoryLayout);
+    template const model::OutputPort<float>& MatrixMatrixMultiply(const model::OutputPort<float>& input1, const model::OutputPort<float>& input2);
+    template const model::OutputPort<float>& MatrixMatrixMultiply(const model::OutputPort<float>& input1, const model::OutputPort<float>& input2, const model::PortMemoryLayout& outputMemoryLayout);
 
     template class MatrixMatrixMultiplyNode<double>;
-    template 
-    const model::OutputPort<double>& MatrixMatrixMultiply(const model::OutputPort<double>& input1, const model::OutputPort<double>& input2);
-    template 
-    const model::OutputPort<double>& MatrixMatrixMultiply(const model::OutputPort<double>& input1, const model::OutputPort<double>& input2, const model::PortMemoryLayout& outputMemoryLayout);
+    template const model::OutputPort<double>& MatrixMatrixMultiply(const model::OutputPort<double>& input1, const model::OutputPort<double>& input2);
+    template const model::OutputPort<double>& MatrixMatrixMultiply(const model::OutputPort<double>& input1, const model::OutputPort<double>& input2, const model::PortMemoryLayout& outputMemoryLayout);
 
 } // namespace nodes
 } // namespace ell

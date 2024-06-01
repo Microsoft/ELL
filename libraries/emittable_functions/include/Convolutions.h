@@ -17,7 +17,6 @@ namespace emittable_functions
 
     void SimpleConvolve1D(value::Vector signal, value::Vector filter, value::Vector output);
 
-    void SimpleDepthwiseSeparableConvolve2D(value::Tensor signal, value::Tensor filter, value::Scalar rowStride,
-                                            value::Scalar columnStride, value::Tensor output);
+    void SimpleDepthwiseSeparableConvolve2D(value::Tensor signal, value::Tensor filter, value::Scalar rowStride, value::Scalar columnStride, value::Tensor output);
 } // namespace emittable_functions
 } // namespace ell

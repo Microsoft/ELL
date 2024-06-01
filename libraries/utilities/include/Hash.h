@@ -91,7 +91,8 @@ namespace utilities
         }
 
         template <typename Tuple>
-        [[nodiscard]] size_t HashTuple(const Tuple& tuple) {
+        [[nodiscard]] size_t HashTuple(const Tuple& tuple)
+        {
             size_t seed = 0;
             HashTupleImpl<0>(seed, tuple);
             return seed;

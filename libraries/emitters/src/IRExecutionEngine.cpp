@@ -13,19 +13,18 @@
 
 #include <llvm/Support/TargetSelect.h>
 
+#include <iostream>
 #include <memory>
 #include <string>
-#include <iostream>
 
-extern "C"
+extern "C" {
+void DebugPrintImpl(char* message)
 {
-    void DebugPrintImpl(char* message)
+    if (message != nullptr)
     {
-        if (message != nullptr)
-        {
-            std::cout << message;
-        }
+        std::cout << message;
     }
+}
 }
 
 namespace ell

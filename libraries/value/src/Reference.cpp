@@ -13,10 +13,12 @@ namespace ell
 namespace value
 {
     Ref<Value>::Ref(Value value) :
-        _value(value.Reference()) {}
+        _value(value.Reference())
+    {}
 
     Ref<Value>::Ref(std::in_place_t, Value value) :
-        _value(value) {}
+        _value(value)
+    {}
 
     Ref<Value>::Ref(const Ref& other) :
         _value(other._value)
@@ -46,13 +48,25 @@ namespace value
 
     Ref<Value>::~Ref() = default;
 
-    Value Ref<Value>::operator*() const { return _value.Dereference(); }
+    Value Ref<Value>::operator*() const
+    {
+        return _value.Dereference();
+    }
 
-    Value Ref<Value>::GetValue() const { return _value; }
+    Value Ref<Value>::GetValue() const
+    {
+        return _value;
+    }
 
-    void Ref<Value>::SetName(const std::string& name) { _value.SetName(name); }
+    void Ref<Value>::SetName(const std::string& name)
+    {
+        _value.SetName(name);
+    }
 
-    std::string Ref<Value>::GetName() const { return _value.GetName(); }
+    std::string Ref<Value>::GetName() const
+    {
+        return _value.GetName();
+    }
 
 } // namespace value
 } // namespace ell

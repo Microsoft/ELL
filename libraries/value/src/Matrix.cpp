@@ -62,7 +62,7 @@ namespace value
 
     Scalar Matrix::operator()(Scalar rowIndex, Scalar columnIndex)
     {
-		Value indexedValue = GetContext().Offset(_value, { rowIndex, columnIndex });
+        Value indexedValue = GetContext().Offset(_value, { rowIndex, columnIndex });
         indexedValue.SetLayout(ScalarLayout);
 
         return indexedValue;
@@ -76,7 +76,10 @@ namespace value
         return Scalar(indexedValue).Copy();
     }
 
-    Value Matrix::GetValue() const { return _value; }
+    Value Matrix::GetValue() const
+    {
+        return _value;
+    }
 
     Matrix Matrix::SubMatrix(Scalar row, Scalar column, int numRows, int numColumns) const
     {
@@ -111,7 +114,10 @@ namespace value
         return newValue;
     }
 
-    size_t Matrix::Size() const { return _value.GetLayout().NumElements(); }
+    size_t Matrix::Size() const
+    {
+        return _value.GetLayout().NumElements();
+    }
 
     Vector Matrix::Row(Scalar index) const
     {
@@ -131,20 +137,35 @@ namespace value
         return indexedValue;
     }
 
-    size_t Matrix::Rows() const { return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(0)); }
+    size_t Matrix::Rows() const
+    {
+        return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(0));
+    }
 
-    size_t Matrix::Columns() const { return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(1)); }
+    size_t Matrix::Columns() const
+    {
+        return static_cast<size_t>(_value.GetLayout().GetLogicalDimensionActiveSize(1));
+    }
 
     Matrix::MatrixLayout Matrix::GetMatrixLayout() const
     {
         return _value.GetLayout().IsCanonicalOrder() ? MatrixLayout::rowMajor : MatrixLayout::columnMajor;
     }
 
-    ValueType Matrix::Type() const { return _value.GetBaseType(); }
+    ValueType Matrix::Type() const
+    {
+        return _value.GetBaseType();
+    }
 
-    void Matrix::SetName(const std::string& name) { _value.SetName(name); }
+    void Matrix::SetName(const std::string& name)
+    {
+        _value.SetName(name);
+    }
 
-    std::string Matrix::GetName() const { return _value.GetName(); }
+    std::string Matrix::GetName() const
+    {
+        return _value.GetName();
+    }
 
     Matrix& Matrix::operator+=(Matrix m)
     {

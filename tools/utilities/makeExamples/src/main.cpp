@@ -24,7 +24,7 @@ void SaveModels(const std::string& ext, std::string outputPath)
     {
         outputPath = ".";
     }
-    
+
     ell::utilities::EnsureDirectoryExists(outputPath);
 
     common::SaveModel(GenerateIdentityModel(3), outputPath + "/identity." + ext);

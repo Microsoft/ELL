@@ -134,11 +134,9 @@ namespace nodes
     template class MatrixVectorMultiplyNode<float>;
     template class MatrixVectorMultiplyNode<double>;
 
-    template
-    const model::OutputPort<float>& MatrixVectorMultiply(const model::OutputPort<float>& inputMatrix, size_t m, size_t n, size_t matrixStride, const model::OutputPort<float>& inputVector);
+    template const model::OutputPort<float>& MatrixVectorMultiply(const model::OutputPort<float>& inputMatrix, size_t m, size_t n, size_t matrixStride, const model::OutputPort<float>& inputVector);
 
-    template
-    const model::OutputPort<double>& MatrixVectorMultiply(const model::OutputPort<double>& inputMatrix, size_t m, size_t n, size_t matrixStride, const model::OutputPort<double>& inputVector);
+    template const model::OutputPort<double>& MatrixVectorMultiply(const model::OutputPort<double>& inputMatrix, size_t m, size_t n, size_t matrixStride, const model::OutputPort<double>& inputVector);
 
 } // namespace nodes
 } // namespace ell

@@ -120,7 +120,8 @@ void DataVectorCopyAsTest(std::initializer_list<double> list, bool testDense = t
 
     if (testDense)
     {
-        auto d = data::TransformAs<DataVectorType1, data::IterationPolicy::all, DataVectorType2>(a, [](data::IndexValue x) { return x.value + 3; }, 3);
+        auto d = data::TransformAs<DataVectorType1, data::IterationPolicy::all, DataVectorType2>(
+            a, [](data::IndexValue x) { return x.value + 3; }, 3);
         auto dv = d.ToArray();
         std::vector<double> r{ av[0] + 3, av[1] + 3, av[2] + 3 };
         testing::ProcessTest(name1 + "::TransformAs<all," + name2 + ">", testing::IsEqual(r, dv, 1.0e-6));

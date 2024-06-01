@@ -141,7 +141,10 @@ namespace utilities
         }
     }
 
-    int DimensionOrder::operator[](int index) const { return DimensionVector::operator[](index); }
+    int DimensionOrder::operator[](int index) const
+    {
+        return DimensionVector::operator[](index);
+    }
 
     bool DimensionOrder::IsCanonicalOrder() const
     {
@@ -263,7 +266,10 @@ namespace utilities
         }
     }
 
-    bool MemoryLayout::HasPadding() const { return _size != _extent; }
+    bool MemoryLayout::HasPadding() const
+    {
+        return _size != _extent;
+    }
 
     int MemoryLayout::GetActiveSize(size_t index) const
     {
@@ -374,11 +380,20 @@ namespace utilities
         return ReversePermute(physicalCoordinates, _dimensionOrder);
     }
 
-    MemoryShape MemoryLayout::GetLogicalDimensionActiveSize() const { return ReversePermute(_size, _dimensionOrder); }
+    MemoryShape MemoryLayout::GetLogicalDimensionActiveSize() const
+    {
+        return ReversePermute(_size, _dimensionOrder);
+    }
 
-    MemoryShape MemoryLayout::GetLogicalDimensionExtent() const { return ReversePermute(_extent, _dimensionOrder); }
+    MemoryShape MemoryLayout::GetLogicalDimensionExtent() const
+    {
+        return ReversePermute(_extent, _dimensionOrder);
+    }
 
-    MemoryShape MemoryLayout::GetLogicalDimensionOffset() const { return ReversePermute(_offset, _dimensionOrder); }
+    MemoryShape MemoryLayout::GetLogicalDimensionOffset() const
+    {
+        return ReversePermute(_offset, _dimensionOrder);
+    }
 
     MemoryShape MemoryLayout::GetLogicalDimensionIncrement() const
     {
@@ -452,9 +467,15 @@ namespace utilities
         return false;
     }
 
-    bool MemoryLayout::IsContiguous() const { return _size == _extent && IsCanonicalOrder(); }
+    bool MemoryLayout::IsContiguous() const
+    {
+        return _size == _extent && IsCanonicalOrder();
+    }
 
-    bool MemoryLayout::IsCanonicalOrder() const { return _dimensionOrder.IsCanonicalOrder(); }
+    bool MemoryLayout::IsCanonicalOrder() const
+    {
+        return _dimensionOrder.IsCanonicalOrder();
+    }
 
     MemoryLayout MemoryLayout::ReorderedCopy(const DimensionOrder& newOrder) const
     {
@@ -629,17 +650,35 @@ namespace utilities
         return true;
     }
 
-    bool operator==(const DimensionOrder& order1, const DimensionOrder& order2) { return Equal(order1, order2); }
+    bool operator==(const DimensionOrder& order1, const DimensionOrder& order2)
+    {
+        return Equal(order1, order2);
+    }
 
-    bool operator!=(const DimensionOrder& order1, const DimensionOrder& order2) { return !Equal(order1, order2); }
+    bool operator!=(const DimensionOrder& order1, const DimensionOrder& order2)
+    {
+        return !Equal(order1, order2);
+    }
 
-    bool operator==(const MemoryShape& shape1, const MemoryShape& shape2) { return Equal(shape1, shape2); }
+    bool operator==(const MemoryShape& shape1, const MemoryShape& shape2)
+    {
+        return Equal(shape1, shape2);
+    }
 
-    bool operator!=(const MemoryShape& shape1, const MemoryShape& shape2) { return !Equal(shape1, shape2); }
+    bool operator!=(const MemoryShape& shape1, const MemoryShape& shape2)
+    {
+        return !Equal(shape1, shape2);
+    }
 
-    bool operator==(const MemoryCoordinates& shape1, const MemoryCoordinates& shape2) { return Equal(shape1, shape2); }
+    bool operator==(const MemoryCoordinates& shape1, const MemoryCoordinates& shape2)
+    {
+        return Equal(shape1, shape2);
+    }
 
-    bool operator!=(const MemoryCoordinates& shape1, const MemoryCoordinates& shape2) { return !Equal(shape1, shape2); }
+    bool operator!=(const MemoryCoordinates& shape1, const MemoryCoordinates& shape2)
+    {
+        return !Equal(shape1, shape2);
+    }
 
     bool MemoryLayoutsEqual(const MemoryLayout& layout1, const MemoryLayout& layout2)
     {

@@ -56,8 +56,7 @@ namespace nodes
 
         switch (convParams.method)
         {
-        case ConvolutionMethod::simple:
-        {
+        case ConvolutionMethod::simple: {
             if (isDepthwiseSeparable)
             {
                 auto convNode = transformer.AddNode<SpatialConvolutionNode<ValueType>>(*newInput, this->GetLayer(), convOutputLayout);
@@ -70,20 +69,17 @@ namespace nodes
             }
         }
         break;
-        case ConvolutionMethod::unrolled:
-        {
+        case ConvolutionMethod::unrolled: {
             auto convNode = transformer.AddNode<UnrolledConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, weights, convParams.stride);
             convOutput = &convNode->output;
         }
         break;
-        case ConvolutionMethod::diagonal:
-        {
+        case ConvolutionMethod::diagonal: {
             auto convNode = transformer.AddNode<DiagonalConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, weights, convParams.stride);
             convOutput = &convNode->output;
         }
         break;
-        case ConvolutionMethod::winograd:
-        {
+        case ConvolutionMethod::winograd: {
             auto convNode = transformer.AddNode<WinogradConvolutionNode<ValueType>>(*newInput, convInputLayout, convOutputLayout, weights, convParams.stride);
             convOutput = &convNode->output;
         }

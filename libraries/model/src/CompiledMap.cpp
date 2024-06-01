@@ -18,8 +18,8 @@ namespace model
     CompiledMap::CompiledMap(model::Map map, std::string functionName, const MapCompilerOptions& options) :
         Map(std::move(map)),
         _functionName(functionName),
-        _compilerOptions(options) {}
-
+        _compilerOptions(options)
+    {}
 
     template <>
     CallbackRegistry<float>& CompiledMap::GetCallbackRegistry() const

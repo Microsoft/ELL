@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "TypeTraits.h"
 #include "Boolean.h"
+#include "TypeTraits.h"
 
 #include <cstddef>
 #include <cstdint>

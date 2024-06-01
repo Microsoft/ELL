@@ -439,7 +439,7 @@ namespace value
         inline operator Value&() { return _value; }
 
         inline Value& GetValue() { return _value; }
-        inline const Value& GetValue() const { return _value;  }
+        inline const Value& GetValue() const { return _value; }
 
     private:
         Value _value;

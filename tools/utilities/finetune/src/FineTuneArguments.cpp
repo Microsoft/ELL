@@ -397,4 +397,4 @@ ParsedFineTuneArguments ParsedFineTuneArguments::ParseCommandLine(int argc, char
     }
 }
 
-}
+} // namespace ell

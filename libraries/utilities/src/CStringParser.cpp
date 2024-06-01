@@ -62,7 +62,7 @@ namespace utilities
         }
 
         errno = tmp;
-        return ParseResult::success;        
+        return ParseResult::success;
     }
 
     template <typename ValueType, typename ParseFunctionType>
@@ -96,7 +96,7 @@ namespace utilities
         errno = tmp;
         return ParseResult::success;
     }
-    
+
     // wrapper for std::strtof
     inline ParseResult cParse(const char* pStr, char*& pEnd, float& value)
     {
@@ -132,7 +132,7 @@ namespace utilities
     {
         return ParseInt(pStr, pEnd, std::strtol, value);
     }
-    
+
     // wrapper for strtoul
     inline ParseResult cParse(const char* pStr, char*& pEnd, unsigned short& value)
     {
@@ -212,7 +212,7 @@ namespace utilities
         return parseResult;
     }
 
-    // explicit instantiation 
+    // explicit instantiation
 
     template ParseResult Parse(const char*& pStr, float& value);
     template ParseResult Parse(const char*& pStr, double& value);

@@ -84,7 +84,7 @@ namespace model
         ///
         /// <returns> The name of this type. </returns>
         std::string GetRuntimeTypeName() const override { return GetTypeName(); }
-        
+
         /// <summary> Reset any model state. </summary>
         virtual void Reset() = 0;
 
@@ -99,7 +99,7 @@ namespace model
     protected:
         CompiledMap(Map map, std::string functionName, const MapCompilerOptions& options);
         MapCompilerOptions GetMapCompilerOptions() const { return _compilerOptions; }
-        
+
         std::string _functionName;
         MapCompilerOptions _compilerOptions;
 

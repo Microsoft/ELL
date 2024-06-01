@@ -271,8 +271,7 @@ namespace model
             ComputeFunction<InputType> computeFunction;
             switch (GetOutput(0).GetType()) // Switch on output type
             {
-            case model::Port::PortType::boolean:
-            {
+            case model::Port::PortType::boolean: {
                 _cachedOutput = Vector<bool>(outputSize);
                 auto fn = reinterpret_cast<void (*)(void*, const InputType*, bool*)>(functionPointer);
                 computeFunction = [this, fn](void* context, const InputType* input) {
@@ -281,8 +280,7 @@ namespace model
             }
             break;
 
-            case model::Port::PortType::integer:
-            {
+            case model::Port::PortType::integer: {
                 _cachedOutput = Vector<int>(outputSize);
                 auto fn = reinterpret_cast<void (*)(void*, const InputType*, int*)>(functionPointer);
                 computeFunction = [this, fn](void* context, const InputType* input) {
@@ -291,8 +289,7 @@ namespace model
             }
             break;
 
-            case model::Port::PortType::bigInt:
-            {
+            case model::Port::PortType::bigInt: {
                 _cachedOutput = Vector<int64_t>(outputSize);
                 auto fn = reinterpret_cast<void (*)(void*, const InputType*, int64_t*)>(functionPointer);
                 computeFunction = [this, fn](void* context, const InputType* input) {
@@ -301,8 +298,7 @@ namespace model
             }
             break;
 
-            case model::Port::PortType::smallReal:
-            {
+            case model::Port::PortType::smallReal: {
                 _cachedOutput = Vector<float>(outputSize);
                 auto fn = reinterpret_cast<void (*)(void*, const InputType*, float*)>(functionPointer);
                 computeFunction = [this, fn](void* context, const InputType* input) {
@@ -311,8 +307,7 @@ namespace model
             }
             break;
 
-            case model::Port::PortType::real:
-            {
+            case model::Port::PortType::real: {
                 _cachedOutput = Vector<double>(outputSize);
                 auto fn = reinterpret_cast<void (*)(void*, const InputType*, double*)>(functionPointer);
                 computeFunction = [this, fn](void* context, const InputType* input) {
@@ -327,10 +322,10 @@ namespace model
 
             _computeInputFunction = computeFunction;
             functionPointer = _executionEngine->ResolveFunctionAddress(_functionName + "_dispatch");
-            _computeDispatchFunction = reinterpret_cast<void(*)(void*, void* const*, void* const*)>(functionPointer);
+            _computeDispatchFunction = reinterpret_cast<void (*)(void*, void* const*, void* const*)>(functionPointer);
 
             functionPointer = _executionEngine->ResolveFunctionAddress(_moduleName + "_Reset");
-            _resetFunction = reinterpret_cast<void(*)()>(functionPointer);
+            _resetFunction = reinterpret_cast<void (*)()>(functionPointer);
         }
     }
 

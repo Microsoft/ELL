@@ -111,7 +111,6 @@ namespace predictors
             return result;
         }
 
-
         template <typename ElementType>
         void LeakyReLUActivation<ElementType>::WriteToArchive(utilities::Archiver& archiver) const
         {

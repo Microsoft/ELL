@@ -16,9 +16,9 @@
 
 #include <passes/include/StandardTransformations.h>
 
-#include <utilities/include/TypeAliases.h>
 #include <utilities/include/Files.h>
 #include <utilities/include/Graph.h>
+#include <utilities/include/TypeAliases.h>
 
 #include <sstream>
 #include <string>

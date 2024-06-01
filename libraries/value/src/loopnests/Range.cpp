@@ -19,15 +19,28 @@ namespace value
         Range::Range(int begin, int end, int increment) :
             _begin(begin),
             _end(end),
-            _increment(increment) {}
+            _increment(increment)
+        {}
 
-        int Range::Begin() const { return _begin; }
+        int Range::Begin() const
+        {
+            return _begin;
+        }
 
-        int Range::End() const { return _end; }
+        int Range::End() const
+        {
+            return _end;
+        }
 
-        int Range::Size() const { return _end - _begin; }
+        int Range::Size() const
+        {
+            return _end - _begin;
+        }
 
-        int Range::Increment() const { return _increment; }
+        int Range::Increment() const
+        {
+            return _increment;
+        }
 
         std::ostream& operator<<(std::ostream& os, const Range& r)
         {

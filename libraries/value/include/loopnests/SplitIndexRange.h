@@ -11,8 +11,8 @@
 #include "Index.h"
 #include "IndexRange.h"
 
-#include <map>
 #include <iosfwd>
+#include <map>
 #include <unordered_map>
 #include <vector>
 
@@ -59,9 +59,9 @@ namespace value
             std::vector<Index> GetComputedIndices() const;
             std::vector<Index> GetDependentIndices(const Index& index, bool includeSelf = false) const;
             std::vector<Index> GetDependentLoopIndices(const Index& index, bool includeSelf = false) const;
-            
+
             bool HasParentIndex(const Index& parent) const;
-            
+
             /// <summary> Get the index that was split in order to create the given index </summary>
             Index GetParentIndex(const Index& parent) const;
 
@@ -69,19 +69,19 @@ namespace value
             bool IsInnerSplitIndex(const Index& index) const;
             Index GetOuterSplitIndex(const Index& parent) const;
             Index GetInnerSplitIndex(const Index& parent) const;
-            
+
             std::vector<Index> GetAllParentIndices(const Index& index) const;
             std::vector<Index> GetChildIndices(const Index& index) const;
 
             void Print(std::ostream& os) const;
-            
+
         private:
             friend class SplitIterationDomain;
 
             SplitIndex Split(int size); // add a split --- must be smaller than last split
             SplitIndex Split(Index index, int size); // split the given index
             SplitIndex SplitNode(int node, int size); // split the given index
-            
+
             int GetNode(const Index& index) const; // returns the offset (index into a vector) for the given index
             int GetParent(int node) const;
             int GetLeftChild(int node) const;

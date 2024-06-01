@@ -194,7 +194,7 @@ int main()
 
     TestSolutionEquivalenceSDCA<double, SquaredHingeLoss, L2Regularizer>(10);
     TestSolutionEquivalenceSDCA<int, SquaredHingeLoss, L2Regularizer>(10);
-    
+
     TestMaskedMatrixSolution<int, UnbiasedMatrixSolution>();
     TestMaskedMatrixSolution<float, UnbiasedMatrixSolution>();
     TestMaskedMatrixSolution<double, UnbiasedMatrixSolution>();

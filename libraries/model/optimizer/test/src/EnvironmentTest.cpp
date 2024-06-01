@@ -26,12 +26,11 @@ void TestEnvironment()
 {
     // Creating an instance of `IRModuleEmitter` will initialize LLVM so we can retrieve the host device
     emitters::CompilerOptions options;
-    emitters::IRModuleEmitter module("testModule", options); 
-    
+    emitters::IRModuleEmitter module("testModule", options);
+
     Environment emptyEnv;
     ProcessTest("Testing default environment", !emptyEnv.HasTargetDevice());
-    
+
     Environment hostEnv(emitters::GetTargetDevice("host"));
     ProcessTest("Testing host environment", hostEnv.HasTargetDevice());
 }
-

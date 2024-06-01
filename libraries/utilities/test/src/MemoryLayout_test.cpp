@@ -48,7 +48,7 @@ void TestMemoryLayoutCtors()
         {
             return ok;
         }
-        
+
         try
         {
             if (rowPadding > 0 || columnPadding > 0)
@@ -59,7 +59,7 @@ void TestMemoryLayoutCtors()
         }
         catch (InputException&)
         {}
-        
+
         if (!ok)
         {
             return ok;

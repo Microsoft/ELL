@@ -47,7 +47,8 @@ namespace emitters
     } // namespace
 
     IRLoopEmitter::IRLoopEmitter(IRFunctionEmitter& functionEmitter) :
-        _functionEmitter(functionEmitter) {}
+        _functionEmitter(functionEmitter)
+    {}
 
     void IRLoopEmitter::AddLoopMetadata(llvm::BranchInst* branch, bool unroll, bool vectorize)
     {

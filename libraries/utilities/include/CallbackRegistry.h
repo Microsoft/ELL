@@ -115,7 +115,7 @@ namespace utilities
         return !_sinkCallbacks.empty() || !_sourceCallbacks.empty();
     }
 
-} // namespace model
+} // namespace utilities
 } // namespace ell
 
 #pragma endregion implementation

@@ -144,9 +144,15 @@ namespace emitters
         }
     }
 
-    llvm::PointerType* IREmitter::PointerType(VariableType type) { return Type(type)->getPointerTo(); }
+    llvm::PointerType* IREmitter::PointerType(VariableType type)
+    {
+        return Type(type)->getPointerTo();
+    }
 
-    llvm::PointerType* IREmitter::PointerType(LLVMType type) { return type->getPointerTo(); }
+    llvm::PointerType* IREmitter::PointerType(LLVMType type)
+    {
+        return type->getPointerTo();
+    }
 
     llvm::ArrayType* IREmitter::ArrayType(VariableType type, size_t size)
     {
@@ -159,7 +165,10 @@ namespace emitters
         return llvm::ArrayType::get(rowType, rows);
     }
 
-    llvm::ArrayType* IREmitter::ArrayType(LLVMType type, size_t size) { return llvm::ArrayType::get(type, size); }
+    llvm::ArrayType* IREmitter::ArrayType(LLVMType type, size_t size)
+    {
+        return llvm::ArrayType::get(type, size);
+    }
 
     llvm::ArrayType* IREmitter::ArrayType(LLVMType type, size_t rows, size_t columns)
     {
@@ -172,19 +181,40 @@ namespace emitters
         return llvm::VectorType::get(Type(type), size);
     }
 
-    llvm::VectorType* IREmitter::VectorType(LLVMType type, size_t size) { return llvm::VectorType::get(type, size); }
+    llvm::VectorType* IREmitter::VectorType(LLVMType type, size_t size)
+    {
+        return llvm::VectorType::get(type, size);
+    }
 
-    llvm::Constant* IREmitter::Literal(const bool value) { return Integer(VariableType::Byte, value ? 1 : 0); }
+    llvm::Constant* IREmitter::Literal(const bool value)
+    {
+        return Integer(VariableType::Byte, value ? 1 : 0);
+    }
 
-    llvm::Constant* IREmitter::Literal(const int8_t value) { return Integer(VariableType::Char8, value); }
+    llvm::Constant* IREmitter::Literal(const int8_t value)
+    {
+        return Integer(VariableType::Char8, value);
+    }
 
-    llvm::Constant* IREmitter::Literal(const uint8_t value) { return Integer(VariableType::Byte, value); }
+    llvm::Constant* IREmitter::Literal(const uint8_t value)
+    {
+        return Integer(VariableType::Byte, value);
+    }
 
-    llvm::Constant* IREmitter::Literal(const short value) { return Integer(VariableType::Int16, value); }
+    llvm::Constant* IREmitter::Literal(const short value)
+    {
+        return Integer(VariableType::Int16, value);
+    }
 
-    llvm::Constant* IREmitter::Literal(const int value) { return Integer(VariableType::Int32, value); }
+    llvm::Constant* IREmitter::Literal(const int value)
+    {
+        return Integer(VariableType::Int32, value);
+    }
 
-    llvm::Constant* IREmitter::Literal(const int64_t value) { return Integer(VariableType::Int64, value); }
+    llvm::Constant* IREmitter::Literal(const int64_t value)
+    {
+        return Integer(VariableType::Int64, value);
+    }
 
     llvm::Constant* IREmitter::Literal(const float value)
     {
@@ -282,15 +312,30 @@ namespace emitters
         return nullptr;
     }
 
-    llvm::Constant* IREmitter::Zero(LLVMType type) { return llvm::Constant::getNullValue(type); }
+    llvm::Constant* IREmitter::Zero(LLVMType type)
+    {
+        return llvm::Constant::getNullValue(type);
+    }
 
-    llvm::Constant* IREmitter::True() { return Literal(true); }
+    llvm::Constant* IREmitter::True()
+    {
+        return Literal(true);
+    }
 
-    llvm::Constant* IREmitter::False() { return Literal(false); }
+    llvm::Constant* IREmitter::False()
+    {
+        return Literal(false);
+    }
 
-    llvm::Constant* IREmitter::TrueBit() { return llvm::ConstantInt::getTrue(_llvmContext); }
+    llvm::Constant* IREmitter::TrueBit()
+    {
+        return llvm::ConstantInt::getTrue(_llvmContext);
+    }
 
-    llvm::Constant* IREmitter::FalseBit() { return llvm::ConstantInt::getFalse(_llvmContext); }
+    llvm::Constant* IREmitter::FalseBit()
+    {
+        return llvm::ConstantInt::getFalse(_llvmContext);
+    }
 
     llvm::ConstantPointerNull* IREmitter::NullPointer(llvm::PointerType* pointerType)
     {
@@ -871,9 +916,15 @@ namespace emitters
         }
     }
 
-    void IREmitter::SetCurrentInsertPoint(llvm::IRBuilder<>::InsertPoint pos) { _irBuilder.restoreIP(pos); }
+    void IREmitter::SetCurrentInsertPoint(llvm::IRBuilder<>::InsertPoint pos)
+    {
+        _irBuilder.restoreIP(pos);
+    }
 
-    void IREmitter::SetCurrentInsertPoint(llvm::Instruction* pos) { _irBuilder.SetInsertPoint(pos); }
+    void IREmitter::SetCurrentInsertPoint(llvm::Instruction* pos)
+    {
+        _irBuilder.SetInsertPoint(pos);
+    }
 
     //
     // Calling functions
@@ -1032,7 +1083,10 @@ namespace emitters
         return _irBuilder.CreateAlloca(Type(type), nullptr);
     }
 
-    llvm::AllocaInst* IREmitter::StackAllocate(LLVMType type) { return _irBuilder.CreateAlloca(type, nullptr); }
+    llvm::AllocaInst* IREmitter::StackAllocate(LLVMType type)
+    {
+        return _irBuilder.CreateAlloca(type, nullptr);
+    }
 
     llvm::AllocaInst* IREmitter::StackAllocate(VariableType type, const std::string& name)
     {
@@ -1129,7 +1183,10 @@ namespace emitters
         return llvm::StructType::get(_llvmContext, fields, packed);
     }
 
-    llvm::StructType* IREmitter::GetStruct(const std::string& name) { return _structs[name]; }
+    llvm::StructType* IREmitter::GetStruct(const std::string& name)
+    {
+        return _structs[name];
+    }
 
     uint64_t IREmitter::SizeOf(LLVMType type) const
     {

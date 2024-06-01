@@ -445,25 +445,32 @@ namespace value
         // KernelPredicate
         //
         KernelPredicate::KernelPredicate(const EmptyPredicate& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate::KernelPredicate(const ConstantPredicate& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate::KernelPredicate(const FragmentTypePredicate& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate::KernelPredicate(const PlacementPredicate& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate::KernelPredicate(const IndexDefinedPredicate& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate::KernelPredicate(const KernelPredicateConjunction& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate::KernelPredicate(const KernelPredicateDisjunction& predicate) :
-            _expr(predicate) {}
+            _expr(predicate)
+        {}
 
         KernelPredicate KernelPredicate::Simplify() const
         {

@@ -7,8 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "RegionDetectionLayerNode.h"
-#include "ActivationLayerNode.h"
 #include "ActivationFunctions.h"
+#include "ActivationLayerNode.h"
 
 #include <emitters/include/IRMath.h>
 

@@ -47,7 +47,7 @@ namespace emitters
         {
             throw EmitterException(EmitterError::unexpected, "Unable to allocate target machine");
         }
-        
+
         auto& llvmTargetMachine = static_cast<LLVMTargetMachine&>(*targetMachine);
         auto config = static_cast<llvm::Pass*>(llvmTargetMachine.createPassConfig(_modulePasses));
         _modulePasses.add(config);

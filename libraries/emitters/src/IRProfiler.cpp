@@ -302,7 +302,7 @@ namespace emitters
         // save old insert point
         auto oldInsertPoint = emitter.GetCurrentInsertPoint();
         emitter.SetCurrentBlock(&exitBlock);
-        
+
         // add new return instruction
         emitter.Return(emitter.Literal(_regionCount));
 

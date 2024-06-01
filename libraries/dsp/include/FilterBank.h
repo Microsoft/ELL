@@ -154,7 +154,7 @@ namespace dsp
         /// |       /   |   \           |
         /// |---|---|-.-|-.-|-.-|---|---|
         /// 0   1   2   3   4   5   6   7
-        /// 
+        ///
         /// with offset 0 the result would be (I3 * 1) but with offset 0.5 it would be (I2 * 0.5) + (I3 * 0.5).</summary>
         TriangleFilterBank(size_t windowSize, double sampleRate, size_t numFilters, double offset = 0);
         TriangleFilterBank(size_t windowSize, double sampleRate, size_t numFilters, size_t numFiltersToUse, double offset = 0);

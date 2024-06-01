@@ -23,7 +23,8 @@ namespace trainers
         _dim(dim),
         _numPrototypesPerLabel(numPrototypesPerLabel),
         _B(dim, numLabels * numPrototypesPerLabel),
-        _Z(numLabels, numLabels * numPrototypesPerLabel) {}
+        _Z(numLabels, numLabels * numPrototypesPerLabel)
+    {}
 
     void ProtoNNInit::Initialize(math::ConstMatrixReference<double, math::MatrixLayout::columnMajor> WX, math::ConstMatrixReference<double, math::MatrixLayout::columnMajor> Y)
     {

@@ -95,7 +95,7 @@ namespace value
             if (!_decoratedFunctionName)
             {
                 size_t hash = 0;
-                if(_returnType)
+                if (_returnType)
                 {
                     HashCombine(hash, static_cast<int>(_returnType->GetBaseType()));
                     HashCombine(hash, _returnType->PointerLevel());
@@ -104,7 +104,7 @@ namespace value
                         HashCombine(hash, _returnType->GetLayout());
                     }
                 }
-                for(auto p: _paramTypes)
+                for (auto p : _paramTypes)
                 {
                     HashCombine(hash, static_cast<int>(p.GetBaseType()));
                     HashCombine(hash, p.PointerLevel());
@@ -158,7 +158,10 @@ namespace value
         return !_importedSource.empty();
     }
 
-    bool FunctionDeclaration::IsEmpty() const { return _isEmpty; }
+    bool FunctionDeclaration::IsEmpty() const
+    {
+        return _isEmpty;
+    }
 
     FunctionInlining FunctionDeclaration::InlineState() const
     {

@@ -86,7 +86,6 @@ namespace value
 #else
                 return defaultImpl(v1, v2);
 #endif
-
             });
 
             if (result)

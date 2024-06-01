@@ -84,9 +84,9 @@ namespace nodes
     const model::OutputPort<ValueType>& UnaryOperation(const model::OutputPort<ValueType>& input, UnaryOperationType operation);
 
     /// @{
-        /// <summary> Convenience functions for adding a node to a model. </summary>
-        /// <param name="input"> The port to get the input data from </param>
-        /// <returns> The output of the new node. </returns>
+    /// <summary> Convenience functions for adding a node to a model. </summary>
+    /// <param name="input"> The port to get the input data from </param>
+    /// <returns> The output of the new node. </returns>
     template <typename ValueType, utilities::IsNotBoolean<ValueType> = true>
     const model::OutputPort<ValueType>& Abs(const model::OutputPort<ValueType>& input);
 

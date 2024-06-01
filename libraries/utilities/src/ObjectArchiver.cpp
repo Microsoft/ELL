@@ -112,7 +112,7 @@ namespace utilities
 #define ARCHIVE_TYPE_OP(t) IMPLEMENT_UNARCHIVE_VALUE(ObjectArchiver, t);
     ARCHIVABLE_TYPES_LIST
 #undef ARCHIVE_TYPE_OP
-    
+
     // strings
     void ObjectArchiver::UnarchiveValue(const char* name, std::string& value)
     {

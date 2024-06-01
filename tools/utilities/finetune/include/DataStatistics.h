@@ -27,10 +27,10 @@ struct Sparsity
     double GetSparsity() const { return static_cast<double>(numZeros) / static_cast<double>(numValues); }
 };
 
-/// <summary> 
+/// <summary>
 /// A struct to hold basic statistics about a block of data, including the overall sparsity as well as
-/// the mean, variance, and standard deviation. 
-/// The `mean`, `variance`, and `stdDev` staistics are vectors so that they can represent the statistics 
+/// the mean, variance, and standard deviation.
+/// The `mean`, `variance`, and `stdDev` staistics are vectors so that they can represent the statistics
 /// either of the data as a whole (in which case, they have a size of 1), or along one dimension of a matrix.
 /// </summary>
 struct DataStatistics

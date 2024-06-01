@@ -16,11 +16,13 @@ namespace value
     {
         Kernel::Kernel(std::string name) :
             _id(name),
-            _kernelName(name) {}
+            _kernelName(name)
+        {}
 
         Kernel::Kernel(std::string name, Id id) :
             _id(id.empty() ? name : id),
-            _kernelName(name) {}
+            _kernelName(name)
+        {}
 
         Kernel& Kernel::Inputs(const std::vector<Value>& inputs)
         {

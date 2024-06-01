@@ -43,8 +43,8 @@ namespace nodes
         fn.Define([this](const Value data, Value result) {
             // flatten the MemoryLayout so we can accept any shaped input data and produce any shape result.
             Vector input = ToVector(data);
-            Vector output = ToVector(result);         
-            
+            Vector output = ToVector(result);
+
             For(input, [&input, &output, this](Scalar index) {
                 output[index] = _scale * input[index];
             });

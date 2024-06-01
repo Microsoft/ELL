@@ -117,13 +117,11 @@ namespace
     {
         switch (type)
         {
-        case Port::PortType::smallReal:
-        {
+        case Port::PortType::smallReal: {
             return model.AddNode<InputNode<float>>(layout)->output;
             break;
         }
-        case Port::PortType::real:
-        {
+        case Port::PortType::real: {
             return model.AddNode<InputNode<double>>(layout)->output;
             break;
         }
@@ -259,13 +257,11 @@ UnlabeledDataContainer TransformDataWithSubmodel(const UnlabeledDataContainer& d
 {
     switch (submodel.GetOutputs()[0]->GetType())
     {
-    case Port::PortType::smallReal:
-    {
+    case Port::PortType::smallReal: {
         return TransformDataWithSubmodelImpl<float>(dataset, submodel);
         break;
     }
-    case Port::PortType::real:
-    {
+    case Port::PortType::real: {
         return TransformDataWithSubmodelImpl<double>(dataset, submodel);
         break;
     }
@@ -402,13 +398,11 @@ double GetModelAccuracyImpl(const OutputPortBase& output, const DatasetType& tes
 {
     switch (output.GetType())
     {
-    case Port::PortType::smallReal:
-    {
+    case Port::PortType::smallReal: {
         return GetModelAccuracyImpl<float>(static_cast<const OutputPort<float>&>(output), testDataset);
         break;
     }
-    case Port::PortType::real:
-    {
+    case Port::PortType::real: {
         return GetModelAccuracyImpl<double>(static_cast<const OutputPort<double>&>(output), testDataset);
         break;
     }

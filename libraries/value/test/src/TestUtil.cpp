@@ -153,13 +153,12 @@ Scalar EqualEpsilon(Scalar x, Scalar y, double epsilon)
         DebugPrint("\n");
 #endif // 0
         result = 1;
-    })
-        .Else([&] {
-            if (auto type = x.GetType(); type == ValueType::Float || type == ValueType::Double)
-            {
-                auto tolerance = Cast<Scalar>(epsilon, type);
-                If((x - y) <= tolerance, [&] {
-                    If((y - x) <= tolerance, [&] {
+    }).Else([&] {
+        if (auto type = x.GetType(); type == ValueType::Float || type == ValueType::Double)
+        {
+            auto tolerance = Cast<Scalar>(epsilon, type);
+            If((x - y) <= tolerance, [&] {
+                If((y - x) <= tolerance, [&] {
 #if 0 // Useful for debugging
                     DebugPrint("## Scalar compare passed\n");
                     DebugPrint("  Expected: ");
@@ -169,15 +168,15 @@ Scalar EqualEpsilon(Scalar x, Scalar y, double epsilon)
                     DebugPrintVector(AsVector(y));
                     DebugPrint("\n");
 #endif // 0
-                        result = 1;
-                    });
+                    result = 1;
                 });
-            }
-            else
-            {
-                result = 0;
-            }
-        });
+            });
+        }
+        else
+        {
+            result = 0;
+        }
+    });
 
     return result;
 }

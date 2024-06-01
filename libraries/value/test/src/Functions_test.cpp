@@ -34,10 +34,10 @@ Scalar FunctionArgType_test()
 {
     auto fn = DeclareFunction("FunctionArgType_test")
                   .Parameters(
-                              Value(ValueType::Float, ScalarLayout),
-                              Value({ValueType::Float, 0}, ScalarLayout),
-                              Value(ValueType::Int32, ScalarLayout),
-                              Value({ValueType::Int32, 0}, ScalarLayout))
+                      Value(ValueType::Float, ScalarLayout),
+                      Value({ ValueType::Float, 0 }, ScalarLayout),
+                      Value(ValueType::Int32, ScalarLayout),
+                      Value({ ValueType::Int32, 0 }, ScalarLayout))
                   .Returns(Value(ValueType::Int32, ScalarLayout))
                   .Define([](Scalar f, Scalar f0, Scalar i, Scalar i0) {
                       auto ff = MakeScalar<float>();

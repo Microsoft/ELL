@@ -243,9 +243,11 @@ void TestMaskedMatrixSolution()
     testing::ProcessTest("TestMaskedMatrixSolution2 frozen weights", testing::IsEqual(frozenSolutionWeights2(0, 0), frozenWeights(0, 0)));
     testing::ProcessTest("TestMaskedMatrixSolution2 frozen weights", testing::IsEqual(frozenSolutionWeights2(0, 0), maskedWeights2(0, 0)));
 
-    std::cout << "Original solution weights:\n" << weights << std::endl;
+    std::cout << "Original solution weights:\n"
+              << weights << std::endl;
     std::cout << "Original solution duality gap: " << optimizer.GetSolutionInfo().DualityGap() << std::endl;
-    std::cout << "Masked solution weights:\n" << maskedWeights2 << std::endl;
+    std::cout << "Masked solution weights:\n"
+              << maskedWeights2 << std::endl;
     std::cout << "Masked solution duality gap: " << maskedOptimizer2.GetSolutionInfo().DualityGap() << std::endl;
 };
 

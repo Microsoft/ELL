@@ -234,7 +234,8 @@ namespace model
 
         const auto numInputs = inputs.size();
         // we just need a binary predicate to map over the two vectors, so the accumulator functor is basically a no-op
-        (void)std::inner_product(args.begin() + numInputs, args.end(), outputs.begin(), 0, [](int, int) { return 0; }, ValueToPort);
+        (void)std::inner_product(
+            args.begin() + numInputs, args.end(), outputs.begin(), 0, [](int, int) { return 0; }, ValueToPort);
     }
 
 } // namespace model

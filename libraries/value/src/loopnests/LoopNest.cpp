@@ -738,7 +738,10 @@ namespace value
             return _domain;
         }
 
-        Index LoopNest::GetBaseIndex(const Index& index) const { return _domain.GetBaseIndex(index); }
+        Index LoopNest::GetBaseIndex(const Index& index) const
+        {
+            return _domain.GetBaseIndex(index);
+        }
 
         bool LoopNest::IsLoopIndex(const Index& index) const
         {

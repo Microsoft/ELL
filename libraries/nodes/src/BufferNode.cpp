@@ -10,8 +10,8 @@
 
 #include <value/include/EmitterContext.h>
 
-#include <utilities/include/MemoryLayout.h>
 #include <utilities/include/Boolean.h>
+#include <utilities/include/MemoryLayout.h>
 
 namespace ell
 {
@@ -69,7 +69,7 @@ namespace nodes
 
             // copy the input data to the end of the buffer
             Vector tail = _buffer.SubVector(remainder, inputSize);
-            
+
             // tail = input, should work, but it is currently broken.  (bug 2208)
             For(data, [&tail, &input](Scalar index) {
                 tail[index] = input[index];
@@ -83,7 +83,7 @@ namespace nodes
     template <typename ValueType>
     void BufferNode<ValueType>::DefineReset(FunctionDeclaration& fn)
     {
-        fn.Define([this] { 
+        fn.Define([this] {
             // bugbug: how to emit a "memset" operation here instead?
             Scalar zero(static_cast<ValueType>(0));
             For(_buffer, [this, zero](Scalar index) {

@@ -476,7 +476,8 @@ namespace trainers
             paramStepSize = _stepSize[parameterIndex] * etaVector[4];
 
             // Call the accelerated proximal gradient_paramS method for optimizing this parameter
-            AcceleratedProximalGradient(parameterIndex, [&](ConstColumnMatrixReference /*W*/, const size_t begin, const size_t end) -> math::ColumnMatrix<double> { return _modelMap[parameterIndex]->gradient(_modelMap, X, Y, WX, SimilarityKernel(X, WX, gamma, begin, end, _recomputeWX[parameterIndex]), gamma, begin, end, _parameters.lossFunction); }, [&](auto arg) { ProtoNNTrainerUtils::HardThresholding(arg, _sparsity[parameterIndex]); }, parameterMatrix, epochs, n, sgdBatchSize, paramStepSize, eta_update);
+            AcceleratedProximalGradient(
+                parameterIndex, [&](ConstColumnMatrixReference /*W*/, const size_t begin, const size_t end) -> math::ColumnMatrix<double> { return _modelMap[parameterIndex]->gradient(_modelMap, X, Y, WX, SimilarityKernel(X, WX, gamma, begin, end, _recomputeWX[parameterIndex]), gamma, begin, end, _parameters.lossFunction); }, [&](auto arg) { ProtoNNTrainerUtils::HardThresholding(arg, _sparsity[parameterIndex]); }, parameterMatrix, epochs, n, sgdBatchSize, paramStepSize, eta_update);
 
             math::MultiplyScaleAddUpdate(1.0, _modelMap[m_projectionIndex]->GetData(), X, 0.0, WX);
             fOld = fCur;

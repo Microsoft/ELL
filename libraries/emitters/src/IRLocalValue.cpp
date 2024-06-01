@@ -74,7 +74,8 @@ namespace emitters
     //
     IRLocalValue::IRLocalValue(emitters::IRFunctionEmitter& function, LLVMValue value) :
         function(function),
-        value(value) {}
+        value(value)
+    {}
 
     IRLocalValue& IRLocalValue::operator=(const IRLocalValue& other)
     {

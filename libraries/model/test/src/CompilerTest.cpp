@@ -143,7 +143,7 @@ void TestSimpleMap(bool optimize)
     auto compiledMap = compiler.Compile(map);
     testing::ProcessTest("Testing IsValid of original map", testing::IsEqual(compiledMap.IsValid(), true));
 
-    std::vector<double> input({ 4,5,6 });
+    std::vector<double> input({ 4, 5, 6 });
     std::vector<double> output({ 0, 0, 0 });
     std::vector<double> expected({ 12, 15, 18 });
 
@@ -197,28 +197,24 @@ void TestProtoNNPredictorMap()
     predictors::ProtoNNPredictor protonnPredictor(dim, projectedDim, numPrototypes, numLabels, gamma);
 
     // projectedDim * dim
-    auto W = protonnPredictor.GetProjectionMatrix() =
-        {
+    auto W = protonnPredictor.GetProjectionMatrix() = {
 #include "TestProtoNNPredictorMap_Projection.inc"
-        };
+    };
 
     // projectedDim * numPrototypes
-    auto B = protonnPredictor.GetPrototypes() =
-        {
+    auto B = protonnPredictor.GetPrototypes() = {
 #include "TestProtoNNPredictorMap_Prototypes.inc"
-        };
+    };
 
     // numLabels * numPrototypes
-    auto Z = protonnPredictor.GetLabelEmbeddings() =
-        {
+    auto Z = protonnPredictor.GetLabelEmbeddings() = {
 #include "TestProtoNNPredictorMap_LabelEmbeddings.inc"
-        };
+    };
 
     // MNIST training data features
-    std::vector<std::vector<double>> features =
-        {
+    std::vector<std::vector<double>> features = {
 #include "TestProtoNNPredictorMap_features.inc"
-        };
+    };
 
     std::vector<std::vector<int>> labels{ { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 } };
 
@@ -402,16 +398,17 @@ void TestCompiledMapParallelClone()
     std::vector<std::future<bool>> futures;
     for (const auto& mapRef : compiledMaps)
     {
-        futures.push_back(std::async(std::launch::async,
-                                     [&](int index, model::IRCompiledMap* map) {
-                                         auto engine = utilities::GetRandomEngine("123");
-                                         std::uniform_int_distribution<int> dist(0, 500);
-                                         std::this_thread::sleep_for(std::chrono::milliseconds(dist(engine)));
-                                         VerifyMapOutput(*map, signal, expected, "Parallel map test");
-                                         return true;
-                                     },
-                                     mapRef.first,
-                                     mapRef.second.get()));
+        futures.push_back(std::async(
+            std::launch::async,
+            [&](int index, model::IRCompiledMap* map) {
+                auto engine = utilities::GetRandomEngine("123");
+                std::uniform_int_distribution<int> dist(0, 500);
+                std::this_thread::sleep_for(std::chrono::milliseconds(dist(engine)));
+                VerifyMapOutput(*map, signal, expected, "Parallel map test");
+                return true;
+            },
+            mapRef.first,
+            mapRef.second.get()));
     }
 
     // wait on futures
@@ -852,15 +849,14 @@ void TestMultiSourceSinkMap(bool expanded, bool optimized)
     testing::ProcessTest("Testing GetCallbackFunctionNames", found);
 
     // Compare output
-    std::vector<std::vector<nodes::TimeTickType>> signal =
-        {
-            { 0 },
-            { interval * 1 + lagThreshold / 2 }, // within threshold
-            { interval * 2 }, // on time
-            { interval * 3 + lagThreshold }, // late
-            { interval * 4 + lagThreshold * 20 }, // really late
-            { interval * 5 } // on time
-        };
+    std::vector<std::vector<nodes::TimeTickType>> signal = {
+        { 0 },
+        { interval * 1 + lagThreshold / 2 }, // within threshold
+        { interval * 2 }, // on time
+        { interval * 3 + lagThreshold }, // late
+        { interval * 4 + lagThreshold * 20 }, // really late
+        { interval * 5 } // on time
+    };
 
     VerifyCompiledOutput(map, compiledMap, signal, " multi-sink and source map");
 }

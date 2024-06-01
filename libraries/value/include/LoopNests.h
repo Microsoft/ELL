@@ -191,8 +191,8 @@ namespace value
                     std::tuple<Args...> tupleArgs = utilities::VectorToTuple<Args...>(args);
                     std::apply(fn, tupleArgs);
                 } },
-                kernelOuterIndices,
-                kernelId);
+            kernelOuterIndices,
+            kernelId);
     }
 
     template <typename CachingStrategyType>

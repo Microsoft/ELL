@@ -70,7 +70,7 @@ namespace detail
         void Define(FunctionDeclaration& fn) override
         {
             (void)fn.Define([](Vector v1, Vector v2, Scalar s) {
-                 s = Dot(v1, v2);
+                s = Dot(v1, v2);
             });
         }
 

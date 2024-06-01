@@ -150,8 +150,8 @@ void TestIRCompiler()
     TestReorderDataCodeNode1();
     TestReorderDataCodeNode2();
     TestReorderDataCodeNode3();
-	TestReorderDataCodeNode4();
-	TestReceptiveFieldMatrixNode(1, true); // new version
+    TestReorderDataCodeNode4();
+    TestReceptiveFieldMatrixNode(1, true); // new version
     TestReceptiveFieldMatrixNode(1, false); // old (slow) version
     TestReceptiveFieldMatrixNode(2, true); // new version
     // TestReceptiveFieldMatrixNode(2, false); // old (slow) version -- Fails
@@ -270,8 +270,8 @@ void TestIRCompiler()
     TestConvolutionalLayerNode2(ConvolutionMethod::winograd, 1, 0);
     TestConvolutionalLayerNode3(ConvolutionMethod::winograd, 1, 0);
 
-	//BUGBUG: This test currently fails for Compute but passes for Compile.
-	//TestSpatialConvolutionNode(1, 0);
+    //BUGBUG: This test currently fails for Compute but passes for Compile.
+    //TestSpatialConvolutionNode(1, 0);
 
     TestFullyConnectedLayerNode();
     // TestFullyConnectedLayerNode(0, 1); // Fully-connected layer nodes can't have padding (yet)

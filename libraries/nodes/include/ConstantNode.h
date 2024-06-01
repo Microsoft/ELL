@@ -240,7 +240,7 @@ namespace nodes
         archiver["values"] >> _values;
         model::PortMemoryLayout layout;
         archiver["layout"] >> layout;
-        _output.SetMemoryLayout(layout);        
+        _output.SetMemoryLayout(layout);
     }
 
     template <typename ValueType, typename ModelLikeType>

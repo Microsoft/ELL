@@ -87,7 +87,6 @@ namespace nodes
         LinearPredictorType _predictor;
     };
 
-
     /// <summary> Convenience function to add a linear predictor node. </summary>
     ///
     /// <typeparam name="ElementType"> The fundamental type used by this predictor. </typeparam>
@@ -221,7 +220,7 @@ namespace nodes
         auto node = model->AddNode<LinearPredictorNode<ElementType>>(input, predictor);
         return node->output;
     }
-    
+
     template <typename ElementType>
     LinearPredictorNode<ElementType>* AddNodeToModelTransformer(const model::PortElements<ElementType>& input, const predictors::LinearPredictor<ElementType>& predictor, model::ModelTransformer& transformer)
     {

@@ -22,17 +22,17 @@
 
 #include <llvm/Transforms/Utils/Cloning.h>
 
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
 extern "C" {
-    // This is implementing the Source and SinkNode callback thunks which are used to provide support for std::function callbacks.
-    bool SourceCallbackThunk_float(int index, void* context, float* buffer, int size);
-    bool SourceCallbackThunk_double(int index, void* context, double* buffer, int size);
-    bool SourceCallbackThunk_int(int index, void* context, int* buffer, int size);
-    void SinkCallbackThunk_float(int index, void* context, float* buffer, int size);
-    void SinkCallbackThunk_double(int index, void* context, double* buffer, int size);
-    void SinkCallbackThunk_int(int index, void* context, int* buffer, int size);
+// This is implementing the Source and SinkNode callback thunks which are used to provide support for std::function callbacks.
+bool SourceCallbackThunk_float(int index, void* context, float* buffer, int size);
+bool SourceCallbackThunk_double(int index, void* context, double* buffer, int size);
+bool SourceCallbackThunk_int(int index, void* context, int* buffer, int size);
+void SinkCallbackThunk_float(int index, void* context, float* buffer, int size);
+void SinkCallbackThunk_double(int index, void* context, double* buffer, int size);
+void SinkCallbackThunk_int(int index, void* context, int* buffer, int size);
 }
 
 namespace ell

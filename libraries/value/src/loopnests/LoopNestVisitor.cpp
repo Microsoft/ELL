@@ -538,8 +538,7 @@ namespace value
                             case Fragment::first:
                                 splitVal = loopRange.Begin() + loopRange.Increment();
                                 break;
-                            case Fragment::last:
-                            {
+                            case Fragment::last: {
                                 // take into account last range being a boundary condition
                                 auto extra = loopRange.End() % loopRange.Increment();
                                 if (extra == 0)

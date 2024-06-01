@@ -7,8 +7,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "ObjectiveTest.h"
-#include "OptimizerTestUtil.h"
 #include "ExampleObjectives.h"
+#include "OptimizerTestUtil.h"
 
 #include <testing/include/testing.h>
 

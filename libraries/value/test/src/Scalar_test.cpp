@@ -211,21 +211,21 @@ Scalar SequenceLogicalAndTest()
     Scalar ok = Allocate<int>(ScalarLayout);
     ok = 1;
     If((fourGTTwo && fourGTFour),
-        [&]() {
-            DebugPrint("Error! 4 > 2 && 4 > 4\n");
-        })
-    .ElseIf(fourGTTwo,
-        [&]() {
-            ok = 0;
-        })
-    .ElseIf(fourGTFour,
-        [&]() {
-            DebugPrint("Error! 4 <= 2 && 4 > 4\n");
-        })
-    .Else(
-        [&]() {
-            DebugPrint("Error! 4 <= 2 && 4 <= 4\n");
-        });
+       [&]() {
+           DebugPrint("Error! 4 > 2 && 4 > 4\n");
+       })
+        .ElseIf(fourGTTwo,
+                [&]() {
+                    ok = 0;
+                })
+        .ElseIf(fourGTFour,
+                [&]() {
+                    DebugPrint("Error! 4 <= 2 && 4 > 4\n");
+                })
+        .Else(
+            [&]() {
+                DebugPrint("Error! 4 <= 2 && 4 <= 4\n");
+            });
     return ok;
 }
 
@@ -243,21 +243,21 @@ Scalar SequenceLogicalAndTestWithCopy()
     Scalar ok = Allocate<int>(ScalarLayout);
     ok = 1;
     If((fourGTTwo && fourGTFour),
-        [&]() {
-            DebugPrint("Error! 4 > 2 && 4 > 4\n");
-        })
-    .ElseIf(copyFourGTTwo,
-        [&]() {
-            ok = 0;
-        })
-    .ElseIf(copyFourGTFour,
-        [&]() {
-            DebugPrint("Error! 4 <= 2 && 4 > 4\n");
-        })
-    .Else(
-        [&]() {
-            DebugPrint("Error! 4 <= 2 && 4 <= 4\n");
-        });
+       [&]() {
+           DebugPrint("Error! 4 > 2 && 4 > 4\n");
+       })
+        .ElseIf(copyFourGTTwo,
+                [&]() {
+                    ok = 0;
+                })
+        .ElseIf(copyFourGTFour,
+                [&]() {
+                    DebugPrint("Error! 4 <= 2 && 4 > 4\n");
+                })
+        .Else(
+            [&]() {
+                DebugPrint("Error! 4 <= 2 && 4 <= 4\n");
+            });
     return ok;
 }
 

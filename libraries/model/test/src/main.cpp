@@ -61,7 +61,7 @@ int main()
 
         // Metadata tests
         TestModelMetadata();
-        
+
         // ModelBuilder tests
 
         // Test passthrough to Model::AddNode

@@ -45,13 +45,13 @@ namespace emitters
 
         OptimizationLevel optimizationLevel = OptimizationLevel::Default;
         FloatABIType floatABI = FloatABIType::Default;
-        
+
         FloatFusionMode floatFusionMode = FloatFusionMode::Fast;
         bool unsafeFPMath = true;
         bool noInfsFPMath = true;
         bool noNaNsFPMath = true;
         bool noSignedZerosFPMath = true;
-        
+
         OutputRelocationModel relocModel = OutputRelocationModel::Static;
     };
 

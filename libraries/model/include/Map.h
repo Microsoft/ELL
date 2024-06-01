@@ -713,7 +713,6 @@ namespace model
         return static_cast<const OutputPort<ValueType>&>(GetOutput(outputName));
     }
 
-
 } // namespace model
 } // namespace ell
 

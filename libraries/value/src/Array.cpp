@@ -62,7 +62,10 @@ namespace value
         return *this;
     }
 
-    Value Array::GetValue() const { return _value; }
+    Value Array::GetValue() const
+    {
+        return _value;
+    }
 
     Array Array::Copy() const
     {
@@ -95,13 +98,25 @@ namespace value
         return Scalar(indexedValue).Copy();
     }
 
-    size_t Array::Size() const { return _value.GetLayout().NumElements(); }
+    size_t Array::Size() const
+    {
+        return _value.GetLayout().NumElements();
+    }
 
-    ValueType Array::Type() const { return _value.GetBaseType(); }
+    ValueType Array::Type() const
+    {
+        return _value.GetBaseType();
+    }
 
-    void Array::SetName(const std::string& name) { _value.SetName(name); }
+    void Array::SetName(const std::string& name)
+    {
+        _value.SetName(name);
+    }
 
-    std::string Array::GetName() const { return _value.GetName(); }
+    std::string Array::GetName() const
+    {
+        return _value.GetName();
+    }
 
     void For(Array array, std::function<void(const std::vector<Scalar>&)> fn)
     {

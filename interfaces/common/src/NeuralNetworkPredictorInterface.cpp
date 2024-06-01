@@ -123,14 +123,13 @@ namespace api
 
                 auto& parameters = layers.front()->parameters;
                 // Construct the input layer
-                UnderlyingInputParameters inputParameters =
-                    {
-                        { static_cast<size_t>(parameters.inputShape.rows - (2 * parameters.inputPaddingParameters.paddingSize)), static_cast<size_t>(parameters.inputShape.columns - (2 * parameters.inputPaddingParameters.paddingSize)), static_cast<size_t>(parameters.inputShape.channels) },
-                        underlying::NoPadding(),
-                        { static_cast<size_t>(parameters.inputShape.rows), static_cast<size_t>(parameters.inputShape.columns), static_cast<size_t>(parameters.inputShape.channels) },
-                        parameters.inputPaddingParameters,
-                        inputScaleFactor
-                    };
+                UnderlyingInputParameters inputParameters = {
+                    { static_cast<size_t>(parameters.inputShape.rows - (2 * parameters.inputPaddingParameters.paddingSize)), static_cast<size_t>(parameters.inputShape.columns - (2 * parameters.inputPaddingParameters.paddingSize)), static_cast<size_t>(parameters.inputShape.channels) },
+                    underlying::NoPadding(),
+                    { static_cast<size_t>(parameters.inputShape.rows), static_cast<size_t>(parameters.inputShape.columns), static_cast<size_t>(parameters.inputShape.channels) },
+                    parameters.inputPaddingParameters,
+                    inputScaleFactor
+                };
                 auto inputLayer = std::make_unique<underlying::InputLayer<ElementType>>(inputParameters);
 
                 UnderlyingLayers underlyingLayers;
@@ -200,8 +199,7 @@ namespace api
             case neural::ActivationType::tanh:
                 activation = neural::ActivationLayer::CreateActivation<ElementType>(layer.activation);
                 break;
-            case neural::ActivationType::leaky:
-            {
+            case neural::ActivationType::leaky: {
                 ActivationImplType* implementation = nullptr;
                 if (LayerIs<neural::LeakyReLUActivationLayer>(&layer))
                 {
@@ -215,8 +213,7 @@ namespace api
                 activation = ell::predictors::neural::Activation<ElementType>(implementation);
                 break;
             }
-            case neural::ActivationType::prelu:
-            {
+            case neural::ActivationType::prelu: {
                 auto& preluApiLayer = LayerAs<neural::PReLUActivationLayer>(&layer);
                 TensorType alpha(preluApiLayer.alpha.shape.rows, preluApiLayer.alpha.shape.columns, preluApiLayer.alpha.shape.channels, CastVector<ElementType>(preluApiLayer.alpha.data));
                 activation = ell::predictors::neural::Activation<ElementType>(new underlying::ParametricReLUActivation<ElementType>(alpha));
@@ -308,26 +305,23 @@ namespace api
             {
                 // Set the layer parameters. Note that if this is the first layer, we set the input reference to the output of the InputLayer.
                 // Otherwise, we set it to the output of the last layer.
-                UnderlyingLayerParameters parameters =
-                    {
-                        ((underlyingLayers.size() > 0) ? underlyingLayers.back()->GetOutput() : underlyingInputLayer->GetOutput()),
-                        layer->parameters.inputPaddingParameters,
-                        { static_cast<size_t>(layer->parameters.outputShape.rows), static_cast<size_t>(layer->parameters.outputShape.columns), static_cast<size_t>(layer->parameters.outputShape.channels) },
-                        layer->parameters.outputPaddingParameters,
-                    };
+                UnderlyingLayerParameters parameters = {
+                    ((underlyingLayers.size() > 0) ? underlyingLayers.back()->GetOutput() : underlyingInputLayer->GetOutput()),
+                    layer->parameters.inputPaddingParameters,
+                    { static_cast<size_t>(layer->parameters.outputShape.rows), static_cast<size_t>(layer->parameters.outputShape.columns), static_cast<size_t>(layer->parameters.outputShape.channels) },
+                    layer->parameters.outputPaddingParameters,
+                };
 
                 // Instantiate the specific layer type
                 underlying::LayerType layerType = layer->GetLayerType();
                 switch (layerType)
                 {
-                case (underlying::LayerType::activation):
-                {
+                case (underlying::LayerType::activation): {
                     auto& apiLayer = LayerAs<neural::ActivationLayer>(layer);
                     underlyingLayers.push_back(CreateActivationLayer(apiLayer, parameters));
                 }
                 break;
-                case (underlying::LayerType::batchNormalization):
-                {
+                case (underlying::LayerType::batchNormalization): {
                     auto& apiLayer = LayerAs<neural::BatchNormalizationLayer>(layer);
                     auto epsilonSummand = (apiLayer.epsilonSummand == neural::EpsilonSummand::variance) ? underlying::EpsilonSummand::Variance : underlying::EpsilonSummand::SqrtVariance;
                     underlyingLayers.push_back(std::make_unique<underlying::BatchNormalizationLayer<ElementType>>(parameters,
@@ -337,36 +331,31 @@ namespace api
                                                                                                                   epsilonSummand));
                 }
                 break;
-                case (underlying::LayerType::bias):
-                {
+                case (underlying::LayerType::bias): {
                     auto& apiLayer = LayerAs<neural::BiasLayer>(layer);
                     underlyingLayers.push_back(std::make_unique<underlying::BiasLayer<ElementType>>(parameters, CastVector<ElementType>(apiLayer.bias)));
                 }
                 break;
-                case (underlying::LayerType::binaryConvolution):
-                {
+                case (underlying::LayerType::binaryConvolution): {
                     auto& apiLayer = LayerAs<neural::BinaryConvolutionalLayer>(layer);
                     TensorType weights(apiLayer.weights.shape.rows, apiLayer.weights.shape.columns, apiLayer.weights.shape.channels, CastVector<ElementType>(apiLayer.weights.data));
                     underlyingLayers.push_back(std::make_unique<underlying::BinaryConvolutionalLayer<ElementType>>(parameters, apiLayer.convolutionalParameters, weights));
                 }
                 break;
-                case (underlying::LayerType::convolution):
-                {
+                case (underlying::LayerType::convolution): {
                     auto& apiLayer = LayerAs<neural::ConvolutionalLayer>(layer);
                     TensorType weights(apiLayer.weights.shape.rows, apiLayer.weights.shape.columns, apiLayer.weights.shape.channels, CastVector<ElementType>(apiLayer.weights.data));
                     underlyingLayers.push_back(std::make_unique<underlying::ConvolutionalLayer<ElementType>>(parameters, apiLayer.convolutionalParameters, weights));
                 }
                 break;
-                case (underlying::LayerType::fullyConnected):
-                {
+                case (underlying::LayerType::fullyConnected): {
                     auto& apiLayer = LayerAs<neural::FullyConnectedLayer>(layer);
 
                     TensorType weights(apiLayer.weights.shape.rows, apiLayer.weights.shape.columns, apiLayer.weights.shape.channels, CastVector<ElementType>(apiLayer.weights.data));
                     underlyingLayers.push_back(std::make_unique<underlying::FullyConnectedLayer<ElementType>>(parameters, weights));
                 }
                 break;
-                case (underlying::LayerType::pooling):
-                {
+                case (underlying::LayerType::pooling): {
                     auto& apiLayer = LayerAs<neural::PoolingLayer>(layer);
                     if (apiLayer.poolingType == neural::PoolingType::max)
                     {
@@ -378,20 +367,17 @@ namespace api
                     }
                 }
                 break;
-                case (underlying::LayerType::region):
-                {
+                case (underlying::LayerType::region): {
                     auto& apiLayer = LayerAs<neural::RegionDetectionLayer>(layer);
                     underlyingLayers.push_back(std::make_unique<underlying::RegionDetectionLayer<ElementType>>(parameters, apiLayer.detectionParameters));
                 }
                 break;
-                case (underlying::LayerType::scaling):
-                {
+                case (underlying::LayerType::scaling): {
                     auto& apiLayer = LayerAs<neural::ScalingLayer>(layer);
                     underlyingLayers.push_back(std::make_unique<underlying::ScalingLayer<ElementType>>(parameters, CastVector<ElementType>(apiLayer.scales)));
                 }
                 break;
-                case (underlying::LayerType::softmax):
-                {
+                case (underlying::LayerType::softmax): {
                     underlyingLayers.push_back(std::make_unique<underlying::SoftmaxLayer<ElementType>>(parameters));
                 }
                 break;

@@ -336,11 +336,11 @@ void PrintGraph(const Model& model, const std::string& outputFormat, std::ostrea
             }
 
             auto outputs = node.GetOutputPorts();
-            for(auto output: outputs)
+            for (auto output : outputs)
             {
                 auto outputName = output->GetName();
                 auto dependencies = output->GetReferences();
-                for(auto dependentInput: dependencies)
+                for (auto dependentInput : dependencies)
                 {
                     auto inputName = dependentInput->GetName();
                     auto dependentNode = dependentInput->GetNode();

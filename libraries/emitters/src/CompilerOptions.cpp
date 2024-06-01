@@ -96,7 +96,7 @@ namespace utilities
         {
             throw utilities::InputException(utilities::InputExceptionErrors::indexOutOfRange, "Unknown BlasType");
         }
-        
+
         return it->second;
     }
 } // namespace utilities

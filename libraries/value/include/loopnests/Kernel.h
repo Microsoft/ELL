@@ -69,8 +69,14 @@ namespace value
             std::function<void(std::vector<Value> arguments, std::vector<Value> indices)> _kernel;
         };
 
-        inline bool operator==(const Kernel& i1, const Kernel& i2) { return i1.GetId() == i2.GetId(); }
-        inline bool operator!=(const Kernel& i1, const Kernel& i2) { return !(i1 == i2); }
+        inline bool operator==(const Kernel& i1, const Kernel& i2)
+        {
+            return i1.GetId() == i2.GetId();
+        }
+        inline bool operator!=(const Kernel& i1, const Kernel& i2)
+        {
+            return !(i1 == i2);
+        }
     } // namespace loopnests
 } // namespace value
 } // namespace ell

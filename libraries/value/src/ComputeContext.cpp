@@ -337,7 +337,6 @@ namespace value
             }
         };
 
-        
         struct InitializeVectorFunctionIntrinsic
         {
             auto operator()(std::vector<Value> args) const -> Value
@@ -1585,7 +1584,10 @@ namespace value
         return {};
     }
 
-    void ComputeContext::ImportCodeFileImpl(std::string) { throw LogicException(LogicExceptionErrors::notImplemented); }
+    void ComputeContext::ImportCodeFileImpl(std::string)
+    {
+        throw LogicException(LogicExceptionErrors::notImplemented);
+    }
 
     Scalar ComputeContext::GetFunctionAddressImpl(const FunctionDeclaration& fn)
     {
@@ -1691,7 +1693,10 @@ namespace value
         throw LogicException(LogicExceptionErrors::illegalState);
     }
 
-    std::string ComputeContext::GetGlobalScopedName(std::string name) const { return _moduleName + "_" + name; }
+    std::string ComputeContext::GetGlobalScopedName(std::string name) const
+    {
+        return _moduleName + "_" + name;
+    }
 
     std::string ComputeContext::GetCurrentFunctionScopedName(std::string name) const
     {
@@ -1702,9 +1707,15 @@ namespace value
         return GetGlobalScopedName(GetTopFrame().first + "_" + name);
     }
 
-    ComputeContext::Frame& ComputeContext::GetTopFrame() { return _stack.top(); }
+    ComputeContext::Frame& ComputeContext::GetTopFrame()
+    {
+        return _stack.top();
+    }
 
-    const ComputeContext::Frame& ComputeContext::GetTopFrame() const { return _stack.top(); }
+    const ComputeContext::Frame& ComputeContext::GetTopFrame() const
+    {
+        return _stack.top();
+    }
 
     void swap(ComputeContext& l, ComputeContext& r) noexcept
     {

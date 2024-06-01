@@ -7,18 +7,18 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "ActivationLayerNode.h"
+#include "ActivationFunctions.h"
 #include "BinaryFunctionNode.h"
 #include "BroadcastFunctionNode.h"
-#include "ActivationFunctions.h"
 #include "ConstantNode.h"
 
+#include <predictors/neural/include/HardSigmoidActivation.h>
+#include <predictors/neural/include/HardTanhActivation.h>
 #include <predictors/neural/include/LeakyReLUActivation.h>
 #include <predictors/neural/include/ParametricReLUActivation.h>
 #include <predictors/neural/include/ReLUActivation.h>
 #include <predictors/neural/include/SigmoidActivation.h>
-#include <predictors/neural/include/HardSigmoidActivation.h>
 #include <predictors/neural/include/TanhActivation.h>
-#include <predictors/neural/include/HardTanhActivation.h>
 
 namespace ell
 {
